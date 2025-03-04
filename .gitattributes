@@ -1,0 +1,7 @@
+*.png filter=lfs diff=lfs merge=lfs -text
+*.otf filter=lfs diff=lfs merge=lfs -text
+*.png !text !filter !merge !diff
+*.otf !text !filter !merge !diff
+*.jpeg !text !filter !merge !diff
+*.jpg.*.ttf !text !filter !merge !diff
+*.pdf !text !filter !merge !diff
