@@ -10,9 +10,9 @@
 % os comentarios con :FACER: están para usar con ferramentas como grep
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{revista}[2025/03/03 Clase para a revista de Fisica USC]
+\ProvidesClass{revista}[2025/03/22 Clase para a revista de Fisica USC]
 
-\LoadClass[11pt,a4paper,twocolumn,twoside]{extarticle}
+\LoadClass[11pt,a4paper,twoside]{extarticle}
 
 % :FACER: buscar mellores tipografías
 % Tipo de letra. Cortesía de LuaLaTeX. É extremadamente fácil:
@@ -46,7 +46,7 @@
 % Bibliografia
 \RequirePackage[
     style  = alphabetic,
-    natbib = true
+    natbib = true,
 ]{biblatex}
 \addbibresource{bibliografia.bib}
 
@@ -122,10 +122,11 @@
 
 % este debe cargarse logo dos paquetes matematicos
 \RequirePackage{unicode-math}
-\setmathfont[
-    Path      = ./fontes/EulerMath/,
-    Extension = .otf,
-]{Euler-Math}
+% :FACER: escoller outra tipografia para as mates, esta non ten varios simbolos
+% \setmathfont[
+%     Path      = ./fontes/EulerMath/,
+%     Extension = .otf,
+% ]{Euler-Math}
 
 % :FACER: facer o subtitulo opcional (con \NewDocumentCommand e \IfNoValueTF)
 % Un dos comandos máis importantes. Debe usarse ao comezo de cada artigo.
@@ -138,20 +139,18 @@
     %     filosofia,entrevistas,programacion,pasatempos,anuncios
     % #4: subtítulo do artigo
     \pagestyle{#3}
-    \twocolumn[%
-        \begin{@twocolumnfalse} % desactivamos temporalmente as duas columnas
-            \begin{center}
-                \vspace*{1em}
-                \noindent
-                {\color{Resalte}\Huge \textbf{#1}} \\
-                \vspace{3mm}
-                {\Large #2} \\
-                \vspace{3mm}
-                \textit{#4}
-                \vspace{3mm}
-            \end{center}
-        \end{@twocolumnfalse}
-    ]
+    \phantomsection
+    \addcontentsline{toc}{chapter}{#1}
+    \begin{center}
+        \vspace*{1em}
+        \noindent
+        {\color{Resalte}\Huge \textbf{#1}} \\
+        \vspace{3mm}
+        {\Large #2} \\
+        \vspace{3mm}
+        \textit{#4}
+        \vspace{3mm}
+    \end{center}
     % aprobeito pa meter esto aquí. Resetea números nas ecuacións e figuras
     \setcounter{equation}{0}
     \setcounter{figure}{0}
@@ -367,3 +366,10 @@
 
 % :FACER: remirar estos conteos...
 \pagenumbering{arabic}\setcounter{page}{1}
+
+
+% outros macros e definicions %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% para os diferenciais inexactos
+\newcommand*{\dbar}{\ensuremath{\text{\dj}}}
