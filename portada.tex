@@ -1,3 +1,4 @@
+\pagenumbering{gobble}
 \thispagestyle{empty}
 
 % Creamos unha xeometria nova
@@ -13,7 +14,7 @@
 \setlength\parindent{0pt}
 
 % TITULO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\vspace*{1em}
+\vspace*{2em}
 {%
     \centering%
     \fontsize{70pt}{0pt}\selectfont%
@@ -47,13 +48,30 @@
 \end{picture}
 }
 
-% ARTIGOS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{minipage}{\textwidth}
-    \centering
-    % \setstretch{2} % esto dos espaciados dame dores de cabeza...
-    \vspace*{1em}
-    {\fontsize{26pt}{0pt}\selectfont \textit{\imprimePrimeiroArtigo}}\\
-\end{minipage}%
+% IMAXES SUPERPOSTAS NA IMAXE DA PORTADA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{tikzpicture}[remember picture, overlay]
+    % Imagen 1 (superpuesta)
+    \node[
+        anchor       = south west,
+        xshift       = 0.9cm,
+        yshift       = 3.cm,
+        fill         = gray,
+        fill opacity = 0.75, % transparencia del fondo
+        text opacity = 1,    % el texto sigue opaco
+        % draw,              % opcional, para dibujar el borde
+        % rounded corners,   % opcional, para esquinas redondeadas
+        inner sep=5pt        % separación interna del texto al borde
+    ]  at (current page.south west)
+    {\normalsize \textcolor{white}{\imprimeComentarioImaxePortada} };
+
+    % Imagen 2 (superpuesta)
+    \node[
+        anchor = south west,
+        xshift = 16.7cm,
+        yshift = 3.cm
+    ] at (current page.south west)
+    {\includegraphics[width=3cm]{logos/usc-invertido.png}};
+\end{tikzpicture}
 
 % volvemos a cargar a xeometria que tiñamos no preambulo
 \restoregeometry

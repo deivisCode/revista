@@ -1,16 +1,16 @@
 \newgeometry{
     top    = 5mm,  % marxe superior
-    left   = 5mm,  % marxe esquerdo
-    right  = 5mm,  % marxe dereito
-    bottom = 5mm,  % marxe inferior
+    left   = 6mm,  % marxe esquerdo
+    right  = 6mm,  % marxe dereito
+    bottom = 8mm,  % marxe inferior
     nohead = true, % desactivar o encabezado
     nofoot = true, % desactivar o pe de paxina
 }
 
 % FONDO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \AddToShipoutPictureBG*{
-    \put(0,0){
-        \parbox[b][\paperheight]{\paperwidth}{
+    \put(0,-10){
+        \parbox[b][1.2\paperheight]{\paperwidth}{
             \vfill
             \centering
             {\transparent{0.1}\includegraphics{./logos/botafumeiro.png}}
@@ -19,50 +19,52 @@
     }
 }
 % No caso de poñelo en todas as páxinas, pode pararse con \ClearShipoutPicture
-
 {% os textos de agradecemento e similares
-\centering
-    \vspace*{3em}
-    {%
-        \fontsize{16pt}{0pt}\selectfont%
-        \textit{%
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dictum%
-            pulvinar leo at vehicula. Integer feugiat elementum diam, nec tristique sem%
-            tincidunt ut. Praesent nec tortor neque. Vestibulum eu scelerisque tellus.}%
-        \par%
-    }%
+\vspace*{2.4cm}
+\begin{center}
+    \begin{minipage}{0.68\linewidth}
+    \centering
+    {\Large    Momentum! \\[6mm]
+    Aquí chega a revista por e para estudantes da Facultade de Física USC!
+    Cansos de que o momento lineal e angular guíen as nosas traxectorias, imos
+    escribir unha nova historia; entrevistas, divulgación, filosofía da ciencia e
+    moitos artigos dispares cargamos coa inercia de formar unha nova fiestra para o
+    alumnado. Tes nas túas mans esta oportunidade, deixa que o magnetismo te leve e
+    participa, sé parte deste proxecto: escribe, le, comparte, suxestiona… A
+    revista é real e as túas ideas poden ser máis que imaxinación, non dubides en
+    deixar a túa pegada neste recuncho físico, onde hai física máis aló das aulas.
+    Non dubides unirte ao proxecto!}
+\end{minipage} \\[3.15cm]
 
-    \vspace*{5em}%
-    \adforn{35}%
-    \vspace*{5em}%
+\begin{minipage}{0.75\linewidth}
+    \centering
+    {\normalsize  Agradecementos: \\[5mm]
 
-    {%
-        \fontsize{16pt}{0pt}\selectfont%
-        \textit{%
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dictum%
-            pulvinar leo at vehicula. Integer feugiat elementum diam, nec tristique sem%
-            tincidunt ut. Praesent nec tortor neque. Vestibulum eu scelerisque tellus.}%
-        \par%
-    }%
+    Dende a dirección da revista, queríamos agradecervos a todos por achegarvos
+a este proxecto. Non hai revista sen lector! Pero, para facela, estivo moita
+xente implicada, que non podemos pasar por alto. \\[5mm]
 
-    \vspace*{5em}%
-    \adforn{35}%
-    \vspace*{5em}%
+    Gracias ao noso estimado J. A. Docobo pola súa predisposición e boa vontade
+para participar nun proxecto que aínda non existía, e a Ánxel Costas por
+poñernos en contacto. \\[5mm]
 
-    {%
-        \fontsize{16pt}{0pt}\selectfont%
-        \textit{%
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dictum%
-            pulvinar leo at vehicula. Integer feugiat elementum diam, nec tristique sem%
-            tincidunt ut. Praesent nec tortor neque. Vestibulum eu scelerisque tellus.}%
-        \par%
-    }%
+    Gracias a todas as persoas que se interesaron polo proxecto, simplemente
+por intereresarse, aínda que ao final non participaran directamente. \\[5mm]
+
+    E por suposto, tamén temos que mencionar ao equipo decanal da nosa
+facultade, que nos apoiou e motivou dende o primeiro momento, e ofreceu
+financiar a impresión e colaborar con nós nesta primeira edición. Non sería
+posible sen eles! }
+
+    \end{minipage}
+\end{center}
 }
 
 \thispagestyle{empty}
 \vspace*{3em}
 
 \vfill
+\vspace{-1cm}
 \hrulefill
 
 % :FACER: tal vez facer variables cos contidos das URLs do QR e dos contactos..?
@@ -71,21 +73,27 @@
 % lua-visual-debug pareceme que crea un numero incrible de boxes que pode que
 % toleen a colocacion doutras cousas. Por agora furrula, polos pelos.
 \begin{minipage}[c][5cm]{5cm}
+        \begin{center}
+            Edicións anteriores: \\[2mm]
         \hypersetup{urlcolor=black}
         \qrset{height = 4cm}%
         % Que quede para a posteridade que rickrolleei a Celia e a Sebas con este QR
-        \qrcode{https://youtu.be/dQw4w9WgXcQ}
+        \qrcode{https://drive.google.com/drive/folders/1BSCyGXvnZneKDR1o6fI8nUZ4px71IsLs?usp=sharing}
+    \end{center}
 \end{minipage}
 %
 \hfill % non se deben poñer liñas en branco arredor deste \hfill
 %
-\begin{minipage}[c]{0.4\linewidth}
-    \centering
-    Informacion de contacto\par
-    \url{revistafisicaUSC@gmail.com}\par
-    \url{https://github.com/DAF-USC/revista}\par
-    \vspace*{3em}
+\begin{minipage}[c][5cm]{5cm}
+    \begin{center}
+        Grupo de Whatsapp: \\[2mm]
+        \hypersetup{urlcolor=black}
+        \qrset{height = 4cm}%
+        % Que quede para a posteridade que rickrolleei a Celia e a Sebas con este QR
+        \qrcode{https://chat.whatsapp.com/E900g1Bq7QT5ZKeuiIpxTk}
+    \end{center}
 \end{minipage}
+%
 %
 \hfill
 %

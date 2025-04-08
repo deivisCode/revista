@@ -1,41 +1,40 @@
 \documentclass{revista}
 
 \Numero{001}
-\Data{Marzo do 2025}
-\PrimeiroArtigo{jc}
+\Data{Abril 2025}
 \ImaxePortada{./revistas/001/imaxes/pedra.jpg}
-\definecolor{Resalte}{HTML}{ff0000}
-\definecolor{TextoEnResalte}{HTML}{ffffff}
-\newcommand{\Autores}{\textcolor{TextoEnResalte}{
-    {\Large \textbf{Dirección:}}     \\[0.5cm]
-        Alvaro Pallas Otero          \\[0.2cm]
-        Sebastian Táboas Pazo        \\[0.25cm]
-        Celia Álvarez                \\[0.25cm]
-        Daniel Vázquez               \\[0.75cm]
-    {\Large \textbf{Edición}}        \\[0.5cm]
-        David                        \\[0.2cm]
-        Victor                       \\[0.2cm]
-        Daniel                       \\[0.2cm]
-        Manuel                       \\[0.25cm]
-        Ana                          \\[0.25cm]
-        Cristobal                    \\[0.2cm]
-        Mauro                        \\[0.70cm]
-    {\Large \textbf{Diseño de Logo}} \\[0.5cm]
-        Ana                          \\[0.2cm]
-        Elena
-} }
+\ComentarioImaxePortada{\textbf{1981: Primeira pedra da facultade de física.}}
+\Participantes{%
+    {\Large \textbf{Dirección}}     \\[0.5cm] %
+        Álvaro Pallas Otero          \\[0.2cm] %
+        Sebastián Táboas Pazo        \\[0.25cm]% 
+        Celia Álvarez Álvarez        \\[0.25cm]%
+        Daniel Vázquez Lago          \\[0.75cm]%
+    {\Large \textbf{Edición}}        \\[0.5cm]%
+        David Cotelo Varela          \\[0.2cm]%
+        Víctor Díaz Díaz             \\[0.2cm]%
+        Daniel Vázquez Lago          \\[0.2cm]%
+        Manuel Vázquez Carreira      \\[0.25cm]%
+        Ana Díaz Caride              \\[0.25cm]%
+        Cristóbal Santos Sánchez     \\[0.2cm] %
+        Mauro Garrido Rodríguez      \\[0.70cm]%
+    {\Large \textbf{Deseño de Logo}} \\[0.5cm]%
+        Ana Díaz Caride              \\[0.2cm]%
+}
 
 \begin{document}
 \input{portada.tex}
 \input{indice.tex}
 
-\input{./revistas/001/artigo_ENTREVISTA_OARMA.tex}\newpage
-\input{./revistas/001/artigo_CARATHEODORY.tex}\newpage
-\input{./revistas/001/artigo_IRMAS.tex}\newpage
-\input{./revistas/001/artigo_DECANATO.tex}\newpage
-\input{./revistas/001/artigo_SKYRMIONS.tex}\newpage
-\input{./revistas/001/artigo_XEOCENTRISMO.tex}\newpage
-\input{./revistas/001/artigo_ALMORZO.tex}
+\setlength{\parskip}{1.8mm} % Cambia el espacio entre párrafos
+
+\input{./revistas/001/artigo_DECANATO.tex}         \newpage
+\input{./revistas/001/artigo_CARATHEODORY.tex}     \newpage
+\input{./revistas/001/artigo_ALMORZO.tex}          \newpage
+\input{./revistas/001/artigo_SKYRMIONS.tex}        \newpage
+\input{./revistas/001/artigo_ENTREVISTA_OARMA.tex} \newpage
+\input{./revistas/001/artigo_IRMAS.tex}            \newpage
+\input{./revistas/001/artigo_XEOCENTRISMO.tex}     \newpage
 
 \input{contraportada.tex}
 \end{document}
