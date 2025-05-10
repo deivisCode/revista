@@ -241,7 +241,7 @@
     \fancyfoot[LE,RO]{\thepage} % Páxina
     \fancyfoot[LO,RE]{\imprimeTitulo} % Título
     \renewcommand{\footrulewidth}{0pt} % Sen liña no pé de páxina
-    \headsep = 1.5cm % Espazo no cabeceiro
+    \headsep = 1cm % Espazo no cabeceiro
   }
   \expandafter\newcommand\csname Indice#1\endcsname{%
     \begin{tikzpicture}%
