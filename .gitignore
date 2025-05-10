@@ -9,7 +9,6 @@
 *.fls
 *.log
 *.out
-*.pdf
 *.run.xml
 *.toc
 *.idx
