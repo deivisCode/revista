@@ -1,3 +1,5 @@
+\begingroup % un grupo para que o de parindent non afecte ao resto da revista
+\setlength\parindent{0pt}
 % Color del resalte trasparentado a la derecha del índice
 \begin{tikzpicture}[remember picture, overlay]
     \draw[
@@ -69,7 +71,7 @@
         \node[
             anchor = west,
             align  = left
-        ] at (0.5,0)
+        ] at (0.3,0)
         {
             \footnotesize \href{mailto:\imprimeCorreo}{\textbf{\imprimeCorreo}}
         };
@@ -90,5 +92,6 @@
         \includegraphics[width=0.8\linewidth]{logos/usc-negativo-escuro.pdf}
     \end{center}
 \end{minipage}
+\endgroup % <-- este cerra o grupo que contén o de \setlenght\parindent{0pt}
 \newpage
 \pagenumbering{arabic}

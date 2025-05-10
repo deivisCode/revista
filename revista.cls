@@ -10,7 +10,7 @@
 % os comentarios con :FACER: están para usar con ferramentas como grep
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{revista}[2025/04/10 Clase para a revista de Fisica USC]
+\ProvidesClass{revista}[2025/05/06 Clase para a revista de Fisica USC]
 
 \LoadClass[11pt,a4paper,twoside]{extarticle}
 
@@ -136,6 +136,7 @@
 % clase 'twocols' porque esa da moitísimos problemas no caso de que queiramos
 % ter partes que non teñan 2 columnas. Aparte de que se pode configurar menos
 \RequirePackage{multicol}
+
 % E aumentamos a separación entre as columnas
 \setlength{\columnsep}{5mm}
 
@@ -147,7 +148,7 @@
 \RequirePackage{graphicx}
 % \RequirePackage{svg}
 
-% Mates e todo eso
+% Mates e todo eso :FACER: parece que nadie usa cousas como diffcoeff, tensor ou polinomial...
 \RequirePackage{mathtools}  % mates xerais
 \RequirePackage{amssymb}    % simbolos adicionais
 \RequirePackage{amsthm}     % definir teoremas
@@ -158,8 +159,10 @@
 \RequirePackage{tensor}     % indices e eso
 \RequirePackage{braket} % :FACER: metin este porque alguen o tiña no artigo, non sei que fai
 
+% :FACER: seguimos necesitandoe stes dous paquetes?  vvvvvvvvvvv
 \RequirePackage{svrsymbols} % simbolos variados
 \RequirePackage{adforn}     %
+
 
 \RequirePackage{unicode-math}
 % :FACER: escoller outra tipografia para as mates, esta non ten varios simbolos
@@ -174,7 +177,8 @@
 \RequirePackage{tocloft}    % Para modificar algunos valores de contentsline, espaciados etc
 \RequirePackage{adjustbox}  % Para ajustar tablas
 \RequirePackage{etoolbox}   % Para hacer condicionales
-\RequirePackage{trimspaces}
+\RequirePackage{trimspaces} % :FACER: este creo que estaba orixinalmente para o SeccionTOC
+                            % e agora non fai falta
 
 % Esto pa cambiar facilmente o estilo das 'captions' das cousas. Queremos que
 % este justificada. singlelinecheck=false: evita que LaTeX centre pies de una
@@ -271,7 +275,7 @@
 \definirEstiloEIndice{anuncios}{Anuncios}
 
 \newcommand{\SeccionTOC}[1]{%
-\csname Indice#1\endcsname
+    \csname Indice#1\endcsname
 }
 
 % Este macro pode invocarse con ou sen asterisco, ousexa \EngadeAoTOC*
@@ -392,7 +396,7 @@
 
 % NUMERO
 \def\Numero#1{\def\@Numero{#1}}
-\newcommand{\imprimeNumero}{Num.\@Numero}
+\newcommand{\imprimeNumero}{Núm.\@Numero}
 
 % DATA
 \def\Data#1{\def\@Data{#1}}
@@ -409,7 +413,7 @@
 % \newcommand{\imprimeTerceiroArtigo}{\@TerceiroArtigo}
 
 % :FACER: este texto pode non verse se a imaxe da portada ten cores moi claras
-% Tal vex deberíamos cambiar de sitio dito texto? Ou cambiarlle a cor? Máis
+% Tal vez deberíamos cambiar de sitio dito texto? Ou cambiarlle a cor? Máis
 % macros?
 %
 % O texto que aparece na imaxe da portada
@@ -490,6 +494,7 @@
     \definecolor{Resalte}{HTML}{#1}%
     \hypersetup{linkcolor = {Resalte!55!black}}%
 }%
+
 \newcommand{\CorTextoEnResalte}[1]{
     \definecolor{TextoEnResalte}{HTML}{#1}
 }
