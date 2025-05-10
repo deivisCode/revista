@@ -333,17 +333,17 @@
     \phantomsection%
     % Mostramos o propio titular, como sempre
     \begin{center}
-        \vspace*{-1cm}
+        \vspace*{-5mm}
         % Esto es para que cuando el texto ocupe más de dos líneas, se amplie
         \begingroup
             \setstretch{2}%
             \noindent{\color{Resalte}\Huge \textbf{#2}} \\ % TITULO
         \endgroup
         \vspace{3mm}
-        {\Large #3} \\ % AUTOR
+        {\Large #3} \\ % AUTOR % :FACER: autores opcionais, debería salir facil con expl3
         \vspace{3mm}
         \textit{#5}  % SUBTITULO
-        \vspace{3mm}
+        \vspace{-3mm}
     \end{center}
     % Comprobamos se o comando \Titular se usou con un asterisco ou no
     \IfBooleanTF{#1}% recordade que #1 é o asterisco do comando
@@ -439,14 +439,25 @@
 \newcommand{\imprimeCorreo}{\@Correo}
 \Correo{revistafisicausc@gmail.com}
 
-% Texto de DESPEDIDA, na contraportada
+% Texto de DESPEDIDA, na contraportada. :FACER: fedellar mais con estos macros?
 \def\Despedida#1{\def\@Despedida{#1}}
-\newcommand{\imprimeDespedida}{\@Despedida}
+\newcommand{\imprimeDespedida}{%
+    \begin{center}%
+        \Huge Un Momentum!\par%
+    \end{center}%
+    \vspace{1.1\baselineskip}
+    \@Despedida%
+}%
 \Despedida{}
 
 % AGRADECEMENTOS, na contraportada
 \def\Agradecementos#1{\def\@Agradecementos{#1}}
-\newcommand{\imprimeAgradecementos}{\@Agradecementos}
+\newcommand{\imprimeAgradecementos}{%
+    \begin{center}%
+        \Large Agradecementos:\par%
+    \end{center}%
+    \@Agradecementos%
+}
 \Agradecementos{}
 
 % Link para o DRIVE
