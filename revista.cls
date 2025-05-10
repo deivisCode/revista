@@ -179,12 +179,16 @@
 % Esto pa cambiar facilmente o estilo das 'captions' das cousas. Queremos que
 % este justificada. singlelinecheck=false: evita que LaTeX centre pies de una
 % sola línea (por defecto, lo hace aunque hayas pedido justificación).
-\RequirePackage[
+% :FACER: tal vez podemos customizar algo mais as captions (sans serif?)
+\RequirePackage{caption}
+\captionsetup{
+    font            = footnotesize,
     justification   = justified,
-    singlelinecheck = false
-]{caption}
-\captionsetup[figure]{ labelfont=bf }
-\captionsetup[table]{ labelfont=bf }
+    skip            = 6pt,
+    singlelinecheck = false,
+    labelfont       = {bf,small},
+    textfont        = {small}
+}
 
 % Uns paquetes varios que non organicei
 \RequirePackage{subcaption}
