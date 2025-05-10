@@ -69,7 +69,7 @@
 % :FACER: non temos un estilo concreto para a bibliografía
 % Bibliografia
 \RequirePackage[
-    style  = alphabetic,
+    % style  = alphabetic,
     natbib = true,
 ]{biblatex}
 \addbibresource{bibliografia.bib}
