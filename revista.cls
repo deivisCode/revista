@@ -18,11 +18,17 @@
 % Tipo de letra. Cortesía de LuaLaTeX. É extremadamente fácil:
 \RequirePackage{fontspec}
 
-% Tipografía monoespaciada
+% Tipografía monoespaciada. Usase con \texttt{ aaa }
 \setmonofont[
     Path      = ./fontes/LatinModern/,
     Extension = .otf,
 ]{lmmono10-regular}
+
+% Tipografía Sans Serif. Usase con \textsf{ aaa }
+\setsansfont[
+    Path      = ./fontes/LatinModern/,
+    Extension = .otf,
+]{lmsans10-regular}
 
 % Tipografía xeral
 \setmainfont[
@@ -159,10 +165,12 @@
 
 \RequirePackage{unicode-math}
 % :FACER: escoller outra tipografia para as mates, esta non ten varios simbolos
-% \setmathfont[
-%     Path      = ./fontes/EulerMath/,
-%     Extension = .otf,
-% ]{Euler-Math}
+% A maiores, teño a sospeita de que algúns simbolos e caracteres matemáticos funcionan mal,
+% véxase o de lim -> l1'm da revista_002 no pasatempo de alvaro
+\setmathfont[
+    Path      = ./fontes/LatinModern/,
+    Extension = .otf,
+]{latinmodern-math}
 
 % Para o índice
 \RequirePackage{tocloft}    % Para modificar algunos valores de contentsline, espaciados etc
