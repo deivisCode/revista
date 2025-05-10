@@ -79,6 +79,7 @@
 
 % Graficos e tal. Se podes soñalo, podes facelo con TikZ
 \RequirePackage{tikz}
+\RequirePackage{wrapfig} % :FACER: como metemos as imaxes?
 % para facer calculos cas posicions dos nodos, sumándolle cousas. Por exemplo,
 % fixádevos que ás coordenadas (current page.west) 'súmaselle' (2.5,-5)
 % \node[
@@ -155,6 +156,7 @@
 \RequirePackage{mathrsfs}   % letras reviradas \mathcal
 \RequirePackage{polynomial} % polinomios simples
 \RequirePackage{tensor}     % indices e eso
+\RequirePackage{braket} % :FACER: metin este porque alguen o tiña no artigo, non sei que fai
 
 \RequirePackage{svrsymbols} % simbolos variados
 \RequirePackage{adforn}     %
@@ -193,6 +195,9 @@
 \RequirePackage[scr]{rsfso}
 \RequirePackage{adjustbox}
 \RequirePackage{ragged2e} % Para justificar minipages
+\RequirePackage{float}
+\RequirePackage[small, unboxed]{cwpuzzle}
+\RequirePackage{soul}
 
 % Encabezados e pe de paxina
 % Pa facilitar a creacion cun par de comandos
