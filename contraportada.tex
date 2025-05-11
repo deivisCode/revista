@@ -13,7 +13,7 @@
         \parbox[b][1.2\paperheight]{\paperwidth}{
             \vfill
             \centering
-            {\transparent{0.1}\includegraphics{./logos/botafumeiro.png}}
+            {\transparent{0.05}\includegraphics{logos/botafumeiro.png}}
             \vfill
         }
     }
@@ -23,19 +23,19 @@
 % :FACER: imos cambiar este texto en cada revista?
 %
 {% os textos de agradecemento e similares
-\vspace*{2.4cm}
-\begin{center}
-    \begin{minipage}{0.68\linewidth}
-    \centering
-    { \Large \imprimeDespedida }
-\end{minipage} \\[3.15cm]
+    \vspace*{2.4cm}
+    \begin{center}
+        \begin{minipage}{0.68\linewidth}
+            {\imprimeDespedida }
+        \end{minipage} \\[1.5cm]
 
-% Estes textos SEGURO que se cambian en cada revista. Hai que metelo nun macro
-\begin{minipage}{0.75\linewidth}
-    \centering
-    { \imprimeAgradecementos }
-    \end{minipage}
-\end{center}
+        % Estes textos SEGURO que se cambian en cada revista. Hai que
+        % metelo nun macro
+        \begin{minipage}{0.75\linewidth}
+            \centering
+            { \imprimeAgradecementos }
+        \end{minipage}
+    \end{center}
 }
 
 \thispagestyle{empty}
@@ -51,8 +51,8 @@
 % lua-visual-debug pareceme que crea un numero incrible de boxes que pode que
 % toleen a colocacion doutras cousas. Por agora furrula, polos pelos.
 \begin{minipage}[c][5cm]{5cm}
-        \begin{center}
-            Edicións anteriores: \\[2mm]
+    \begin{center}
+        Edicións anteriores: \\[2mm]
         \hypersetup{urlcolor=black}
         \qrset{height = 4cm}%
         % Que quede para a posteridade que rickrolleei a Celia e a Sebas con este QR
@@ -62,9 +62,9 @@
 %
 \hfill % non se deben poñer liñas en branco arredor deste \hfill
 %
-\begin{minipage}[c][5cm]{5cm}
+\begin{minipage}[c][5cm]{4cm}
     \begin{center}
-        Grupo de Whatsapp: \\[2mm]
+        Participa! (WhatsApp) \\[2mm]
         \hypersetup{urlcolor=black}
         \qrset{height = 4cm}%
         % Que quede para a posteridade que rickrolleei a Celia e a Sebas con este QR
@@ -83,8 +83,20 @@
 % (espero que a ligazón dure) O arquivo .eps debe pasarse a PDF con 'epstopdf'.
 % Esto debería facerse automáticamente, supoñendo que existe o executable.
 % Prefiro facelo así porque o que comparten da USC ten ese formato
-\begin{minipage}[c][4cm]{5cm}
-    \begin{picture}(5cm,4cm)%
-        \put(0,0){\hbox{\includegraphics[width=5cm]{./logos/usc-branco-negro.eps}}}
-    \end{picture}
+%
+% Co logo da vicerreitoría
+\begin{minipage}[c][4cm]{9cm}
+    \begin{center}
+        Co financiamento de: \\[2mm]
+        \begin{picture}(5cm,4cm)%
+            \put(-60,30){\hbox{\includegraphics[width=11cm]{logos/vicerreitoria-branco-negro.pdf}}}
+        \end{picture}
+    \end{center}
 \end{minipage}
+%
+% Co logo da USC
+%\begin{minipage}[c][4cm]{5cm}
+%    \begin{picture}(5cm,4cm)%
+%        \put(0,0){\hbox{\includegraphics[width=5cm]{logos/usc-branco-negro.pdf}}}
+%    \end{picture}
+%\end{minipage}

@@ -10,7 +10,7 @@
 % os comentarios con :FACER: están para usar con ferramentas como grep
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{revista}[2025/04/10 Clase para a revista de Fisica USC]
+\ProvidesClass{revista}[2025/05/06 Clase para a revista de Fisica USC]
 
 \LoadClass[11pt,a4paper,twoside]{extarticle}
 
@@ -18,11 +18,17 @@
 % Tipo de letra. Cortesía de LuaLaTeX. É extremadamente fácil:
 \RequirePackage{fontspec}
 
-% Tipografía monoespaciada
+% Tipografía monoespaciada. Usase con \texttt{ aaa }
 \setmonofont[
     Path      = ./fontes/LatinModern/,
     Extension = .otf,
 ]{lmmono10-regular}
+
+% Tipografía Sans Serif. Usase con \textsf{ aaa }
+\setsansfont[
+    Path      = ./fontes/LatinModern/,
+    Extension = .otf,
+]{lmsans10-regular}
 
 % Tipografía xeral
 \setmainfont[
@@ -63,7 +69,7 @@
 % :FACER: non temos un estilo concreto para a bibliografía
 % Bibliografia
 \RequirePackage[
-    style  = alphabetic,
+    % style  = alphabetic,
     natbib = true,
 ]{biblatex}
 \addbibresource{bibliografia.bib}
@@ -71,12 +77,9 @@
 % Cores. En cada artigo usamos \definecolor{}{} pa coller o que queremos
 \RequirePackage{xcolor}
 
-% Inicializo as coreas agora. En cada artigo é necesario cambialas
-\definecolor{Resalte}{HTML}{ff0000}
-\definecolor{TextoEnResalte}{HTML}{ffffff}
-
 % Graficos e tal. Se podes soñalo, podes facelo con TikZ
 \RequirePackage{tikz}
+\RequirePackage{wrapfig} % :FACER: como metemos as imaxes?
 % para facer calculos cas posicions dos nodos, sumándolle cousas. Por exemplo,
 % fixádevos que ás coordenadas (current page.west) 'súmaselle' (2.5,-5)
 % \node[
@@ -133,6 +136,7 @@
 % clase 'twocols' porque esa da moitísimos problemas no caso de que queiramos
 % ter partes que non teñan 2 columnas. Aparte de que se pode configurar menos
 \RequirePackage{multicol}
+
 % E aumentamos a separación entre as columnas
 \setlength{\columnsep}{5mm}
 
@@ -144,7 +148,7 @@
 \RequirePackage{graphicx}
 % \RequirePackage{svg}
 
-% Mates e todo eso
+% Mates e todo eso :FACER: parece que nadie usa cousas como diffcoeff, tensor ou polinomial...
 \RequirePackage{mathtools}  % mates xerais
 \RequirePackage{amssymb}    % simbolos adicionais
 \RequirePackage{amsthm}     % definir teoremas
@@ -153,32 +157,42 @@
 \RequirePackage{mathrsfs}   % letras reviradas \mathcal
 \RequirePackage{polynomial} % polinomios simples
 \RequirePackage{tensor}     % indices e eso
+\RequirePackage{braket} % :FACER: metin este porque alguen o tiña no artigo, non sei que fai
 
+% :FACER: seguimos necesitandoe stes dous paquetes?  vvvvvvvvvvv
 \RequirePackage{svrsymbols} % simbolos variados
 \RequirePackage{adforn}     %
 
+
 \RequirePackage{unicode-math}
 % :FACER: escoller outra tipografia para as mates, esta non ten varios simbolos
-% \setmathfont[
-%     Path      = ./fontes/EulerMath/,
-%     Extension = .otf,
-% ]{Euler-Math}
+% A maiores, teño a sospeita de que algúns simbolos e caracteres matemáticos funcionan mal,
+% véxase o de lim -> l1'm da revista_002 no pasatempo de alvaro
+\setmathfont[
+    Path      = ./fontes/LatinModern/,
+    Extension = .otf,
+]{latinmodern-math}
 
 % Para o índice
 \RequirePackage{tocloft}    % Para modificar algunos valores de contentsline, espaciados etc
 \RequirePackage{adjustbox}  % Para ajustar tablas
 \RequirePackage{etoolbox}   % Para hacer condicionales
-\RequirePackage{trimspaces}
+\RequirePackage{trimspaces} % :FACER: este creo que estaba orixinalmente para o SeccionTOC
+                            % e agora non fai falta
 
 % Esto pa cambiar facilmente o estilo das 'captions' das cousas. Queremos que
 % este justificada. singlelinecheck=false: evita que LaTeX centre pies de una
 % sola línea (por defecto, lo hace aunque hayas pedido justificación).
-\RequirePackage[
+% :FACER: tal vez podemos customizar algo mais as captions (sans serif?)
+\RequirePackage{caption}
+\captionsetup{
+    font            = footnotesize,
     justification   = justified,
-    singlelinecheck = false
-]{caption}
-\captionsetup[figure]{ labelfont=bf }
-\captionsetup[table]{ labelfont=bf }
+    skip            = 6pt,
+    singlelinecheck = false,
+    labelfont       = {bf,small},
+    textfont        = {small}
+}
 
 % Uns paquetes varios que non organicei
 \RequirePackage{subcaption}
@@ -189,6 +203,9 @@
 \RequirePackage[scr]{rsfso}
 \RequirePackage{adjustbox}
 \RequirePackage{ragged2e} % Para justificar minipages
+\RequirePackage{float}
+\RequirePackage[small, unboxed]{cwpuzzle}
+\RequirePackage{soul}
 
 % Encabezados e pe de paxina
 % Pa facilitar a creacion cun par de comandos
@@ -232,7 +249,7 @@
     \fancyfoot[LE,RO]{\thepage} % Páxina
     \fancyfoot[LO,RE]{\imprimeTitulo} % Título
     \renewcommand{\footrulewidth}{0pt} % Sen liña no pé de páxina
-    \headsep = 1.5cm % Espazo no cabeceiro
+    \headsep = 1cm % Espazo no cabeceiro
   }
   \expandafter\newcommand\csname Indice#1\endcsname{%
     \begin{tikzpicture}%
@@ -258,7 +275,7 @@
 \definirEstiloEIndice{anuncios}{Anuncios}
 
 \newcommand{\SeccionTOC}[1]{%
-\csname Indice#1\endcsname
+    \csname Indice#1\endcsname
 }
 
 % Este macro pode invocarse con ou sen asterisco, ousexa \EngadeAoTOC*
@@ -329,17 +346,17 @@
     \phantomsection%
     % Mostramos o propio titular, como sempre
     \begin{center}
-        \vspace*{-1cm}
+        \vspace*{-5mm}
         % Esto es para que cuando el texto ocupe más de dos líneas, se amplie
         \begingroup
             \setstretch{2}%
             \noindent{\color{Resalte}\Huge \textbf{#2}} \\ % TITULO
         \endgroup
         \vspace{3mm}
-        {\Large #3} \\ % AUTOR
+        {\Large #3} \\ % AUTOR % :FACER: autores opcionais, debería salir facil con expl3
         \vspace{3mm}
         \textit{#5}  % SUBTITULO
-        \vspace{3mm}
+        \vspace{-3mm}
     \end{center}
     % Comprobamos se o comando \Titular se usou con un asterisco ou no
     \IfBooleanTF{#1}% recordade que #1 é o asterisco do comando
@@ -379,7 +396,7 @@
 
 % NUMERO
 \def\Numero#1{\def\@Numero{#1}}
-\newcommand{\imprimeNumero}{Num.\@Numero}
+\newcommand{\imprimeNumero}{Núm.\@Numero}
 
 % DATA
 \def\Data#1{\def\@Data{#1}}
@@ -396,7 +413,7 @@
 % \newcommand{\imprimeTerceiroArtigo}{\@TerceiroArtigo}
 
 % :FACER: este texto pode non verse se a imaxe da portada ten cores moi claras
-% Tal vex deberíamos cambiar de sitio dito texto? Ou cambiarlle a cor? Máis
+% Tal vez deberíamos cambiar de sitio dito texto? Ou cambiarlle a cor? Máis
 % macros?
 %
 % O texto que aparece na imaxe da portada
@@ -435,14 +452,25 @@
 \newcommand{\imprimeCorreo}{\@Correo}
 \Correo{revistafisicausc@gmail.com}
 
-% Texto de DESPEDIDA, na contraportada
+% Texto de DESPEDIDA, na contraportada. :FACER: fedellar mais con estos macros?
 \def\Despedida#1{\def\@Despedida{#1}}
-\newcommand{\imprimeDespedida}{\@Despedida}
+\newcommand{\imprimeDespedida}{%
+    \begin{center}%
+        \Huge Un Momentum!\par%
+    \end{center}%
+    \vspace{1.1\baselineskip}
+    \@Despedida%
+}%
 \Despedida{}
 
 % AGRADECEMENTOS, na contraportada
 \def\Agradecementos#1{\def\@Agradecementos{#1}}
-\newcommand{\imprimeAgradecementos}{\@Agradecementos}
+\newcommand{\imprimeAgradecementos}{%
+    \begin{center}%
+        \Large Agradecementos:\par%
+    \end{center}%
+    \@Agradecementos%
+}
 \Agradecementos{}
 
 % Link para o DRIVE
@@ -457,13 +485,21 @@
 
 % CORES de resalte. Non fai falta definir estos comandos, pero así podemos usar
 % na revista '\CorResalte{ff0000}' en vez de
-% '\definecolor{Resalte}{HTML}{ff0000}'. Algo máis limpo.
-\def\CorResalte#1{\def\@CorResalte{#1}}
-\newcommand{\defineCorResalte}{\definecolor{Resalte}{HTML}{\@CorResalte}}
-\def\CorTextoEnResalte#1{\def\@CorTextoEnResalte{#1}}
-\newcommand{\defineCorTextoEnResalte}{\definecolor{TextoEnResalte}{HTML}{\@CorTextoEnResalte}}
+% '\definecolor{Resalte}{HTML}{ff0000}'. Algo máis limpo. Ollo, hai que meter o
+% de \hypersetup aquí para que as cores dos links cambien en cada revista. Na
+% clase, definimos as cores (nunhas liñas máis adiante), e se non metesemos o
+% hypersetup no macro este, na revista non poderíamos cambiar as cores dos
+% links
+\newcommand{\CorResalte}[1]{%
+    \definecolor{Resalte}{HTML}{#1}%
+    \hypersetup{linkcolor = {Resalte!55!black}}%
+}%
 
-% inicalizo as cores por se acaso
+\newcommand{\CorTextoEnResalte}[1]{
+    \definecolor{TextoEnResalte}{HTML}{#1}
+}
+
+% Inicializo as coreas agora. En cada artigo é necesario cambialas cos macros anteriores
 \definecolor{Resalte}{HTML}{ff0000}
 \definecolor{TextoEnResalte}{HTML}{ffffff}
 

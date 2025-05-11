@@ -1,3 +1,5 @@
+\begingroup % un grupo para que o de parindent non afecte ao resto da revista
+\setlength\parindent{0pt}
 % Color del resalte trasparentado a la derecha del índice
 \begin{tikzpicture}[remember picture, overlay]
     \draw[
@@ -37,8 +39,9 @@
         \begin{minipage}[t]{0.9\textwidth}
             \vfill
             \vspace{2cm}
-            {\Huge \color{Resalte!75!black} \textbf{Sobre Momentum}:} \\[1cm]
-            \imprimeSobreMomentum
+            % :FACER: o SobreMomentum non colle, deberíamos quitalo de todo
+            %{\Huge \color{Resalte!75!black} \textbf{Sobre Momentum}:} \\[1cm]
+            %\imprimeSobreMomentum
         \end{minipage}
     \end{minipage}
 \end{minipage}
@@ -68,25 +71,27 @@
         \node[
             anchor = west,
             align  = left
-        ] at (0.5,0)
+        ] at (0.3,0)
         {
             \footnotesize \href{mailto:\imprimeCorreo}{\textbf{\imprimeCorreo}}
         };
-        \node at (0,-1) {\FonteSimbolos\fontsize{20pt}{0pt}\selectfont \textcolor{TextoEnResalte}  };
-        \node[
-            anchor = west,
-            align  = left
-        ] at (0.5,-1)
-        {
-            \href{https://github.com/\imprimeLinkRepositorio}{\texttt{\imprimeLinkRepositorio}}
-        };
+        % Comentado mentras pensamos se metemos a revista na DAF ou no
+        % \node at (0,-1) {\FonteSimbolos\fontsize{20pt}{0pt}\selectfont \textcolor{TextoEnResalte}  };
+        % \node[
+        %     anchor = west,
+        %     align  = left
+        % ] at (0.5,-1)
+        % {
+        %     \href{https://github.com/\imprimeLinkRepositorio}{\texttt{\imprimeLinkRepositorio}}
+        % };
         \endgroup
     \end{tikzpicture} \\[1.7cm]
     %
     % Logo da USC
     \begin{center}
-        \includegraphics[width=0.8\linewidth]{./logos/usc-invertido.png}
+        \includegraphics[width=0.8\linewidth]{logos/usc-negativo-escuro.pdf}
     \end{center}
 \end{minipage}
+\endgroup % <-- este cerra o grupo que contén o de \setlenght\parindent{0pt}
 \newpage
 \pagenumbering{arabic}
