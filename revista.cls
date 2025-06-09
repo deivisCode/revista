@@ -629,3 +629,6 @@
 
 % Diferenciais inexactos
 \newcommand*{\dbar}{\ensuremath{\text{\dj}}}
+
+% cargamos funcions de Lua
+\directlua{dofile('lua/funcions.lua')}
