@@ -573,21 +573,332 @@
 }
 
 \makeatother
-% Todos esos comandos teñen a info da revista. Gardase o valor nunha variable,
-% e imprimese no PDF con outro comando diferente. Esto da bastante
-% flexibilidade
 
-% En cada revista hai que usar estos comandos ao comezo.
+%%%%%%%%%
+% PORTADA 
+%%%%%%%%%
+\long\def\Portada{%
+  \pagenumbering{gobble}
+  \thispagestyle{empty}
+  
+  % Creamos unha xeometria nova
+  \newgeometry{
+      top    = 2mm,  % marxe superior
+      left   = 5mm,  % marxe esquerdo
+      right  = 5mm,  % marxe dereito
+      bottom = 5mm,  % marxe inferior
+      nohead = true, % desactivar o encabezado
+      nofoot = true, % desactivar o pe de paxina
+  }
+  
+  \begingroup % un grupo para que o de parindent non afecte ao resto da revista
+  \setlength\parindent{0pt}
+  
+  % TITULO %
+  \vspace*{3mm}
+  {%
+      \centering%
+      \fontsize{70pt}{0pt}\selectfont%
+      \FormateaTitulo{Resalte}\par%
+  }%
+  \vspace*{6mm}
+  {%
+      \centering%
+      \fontsize{18pt}{0pt}\selectfont%
+      \textsf{A revista estudantil da Facultade de Física da USC}\par%
+  }%
+  \vspace*{7mm}
+  
+  % NUMERO DA REVISTA E DATA %
+  {
+  \setstretch{0}
+  \begin{tcolorbox}[
+      colback  = Resalte,
+      colframe = black,
+      boxrule  = 2pt,
+      boxsep   = 6pt,
+      sharp corners,
+  ]%
+      {
+          \fontsize{20pt}{0pt}\selectfont%
+          \color{TextoEnResalte}\texttt{\imprimeNumero\hfill\imprimeData}\par%
+      }%
+  \end{tcolorbox}
+  }
+  
+  % IMAXE DE CADA REVISTA %
+  % A imaxe da portada debe ser CADRADA EXACTAMENTE
+  {
+  \vspace*{-4pt} % este espazo negativo e pa que encaixe o da data ca imaxe da portada
+  \nointerlineskip
+  \begin{picture}(\textwidth,\textwidth)%
+      \put(0,0){%
+          \setlength{\fboxsep}{0pt}%
+          \setlength{\fboxrule}{2pt}%
+          \fbox{%
+              % Hai que poñer \textwidth-4p porque \fbox crea unha liña cun certo
+              % grosor, a cal move a imaxe un pouco. Cada borde da \fbox ten 2pt,
+              % e a imaxe movese polo tanto o doble (4pt) para arriba e abaixo.
+              % Así encaixa perfecto
+              \includegraphics[width=\textwidth-4pt]{\imprimeImaxePortada}%
+          }%
+      }%
+  \end{picture}
+  }
+  
+  % IMAXES SUPERPOSTAS NA IMAXE DA PORTADA %
+  \begin{tikzpicture}[remember picture, overlay]
+      % Imagen 1 (superpuesta)
+      \node[
+          anchor       = south west,
+          xshift       = 0.9cm,
+          yshift       = 3.7cm,
+          fill         = gray,
+          fill opacity = 0.75, % transparencia del fondo
+          text opacity = 1,    % el texto sigue opaco
+          % draw,              % opcional, para dibujar el borde
+          % rounded corners,   % opcional, para esquinas redondeadas
+          inner sep=5pt        % separación interna del texto al borde
+      ]  at (current page.south west)
+      {\normalsize \textcolor{white}{\imprimeComentarioImaxePortada} };
+  
+      % Imagen 2 (superpuesta)
+      \node[
+          anchor = south west,
+          xshift = 0.55cm,
+          yshift = 0.5cm
+      ] at (current page.south west)
+      % :FACER: cambiamos moito de logos, igual metemos esto nun macro tamen?
+      {\includegraphics[width=12cm]{logos/vicerreitoria-branco-negro.pdf}};
+  \end{tikzpicture}
+  \endgroup% <-- este cerra o grupo que contén o de \setlenght\parindent{0pt}
+  
+  % volvemos a cargar a xeometria que tiñamos no preambulo
+  \restoregeometry
+}
+
+%%%%%%%%
+% ÍNDICE
+%%%%%%%%
+\long\def\Indice{%
+  \begingroup % un grupo para que o de parindent non afecte ao resto da revista
+  \setlength\parindent{0pt}
+  % Color del resalte trasparentado a la derecha del índice
+  \begin{tikzpicture}[remember picture, overlay]
+      \draw[
+          line width = 0.73\textwidth,
+          color      = Resalte!65!white
+      ] ($(current page.north east) - (0,0)$) -- ($(current page.south east) - (0,0)$);
+  \end{tikzpicture}
+  % (non xoguedes a poñer liñas en blanco entre as tikzpictures, vai ir mal)
+  % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  % Columna de la izqueirda, está el índice y el Sobre Momentum. Para colocar ben
+  % as as cousas hai que usar moitos 'minipage'.
+  \begin{minipage}[t]{0.72\textwidth}%
+      \vspace{-0.3cm}%
+      \begin{minipage}[t]{\hsize}%
+          \makebox[0pt][l]{%
+              % :FACER: se metemos moitas cousas, non colle
+              %
+              % ============ TOC ===============================================
+              % Aquí incluimos el tableofcontens. Personalizado aparte no arquivo
+              % 'revista.cls', botádelle un ollo ao comando \SeccionTOC
+              \begin{adjustbox}{valign=t,minipage={0.9\textwidth},margin={0pt,0pt}}
+                  {
+                      \section*{\Huge \textbf{Índice}}
+                      \begingroup%
+                          % Esto es para que no salte el Indice default, y lo
+                          % podamos poner nosotros
+                          \let\contentsname\relax%
+                          \tableofcontents% <--- o 'TOC' CARGASE AQUí
+                      \endgroup%
+                  }%
+              \end{adjustbox}%
+          }%
+          % ============== SOBRE MOMENTUM =======================
+          % Texto debajo del índice, sobre momentum
+          \vfill
+          \begin{minipage}[t]{0.9\textwidth}
+              \vfill
+  %            \vspace{2cm}
+              % :FACER: o SobreMomentum non colle, deberíamos quitalo de todo
+              %{\Huge \color{Resalte!75!black} \textbf{Sobre Momentum}:} \\[1cm]
+              %\imprimeSobreMomentum
+          \end{minipage}
+      \end{minipage}
+  \end{minipage}
+  \hfill
+  %
+  % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  % LADO DEREITO COS PARTICIPANTES, VARIOS LINKS, DATA, etc. Resaltado cunha cor
+  %
+  \begin{minipage}[t]{0.28\textwidth}
+      \vspace{-0.3cm}
+      \hspace{-0.7cm}
+      % Data e Número da revista
+      \begin{center}
+          \textcolor{TextoEnResalte}{\Large
+              \textbf{\today }\\[5mm]
+              \textbf{\imprimeNumero} \\[1.5cm]
+          }
+      \end{center}
+      % Aquí mostramos as persoas que participaron no proxecto.
+      \imprimeParticipantes \\[1.5cm]
+      % Links varios
+      \begin{tikzpicture}[scale=1.5]
+          \begingroup
+          \hypersetup{urlcolor = TextoEnResalte}
+          \node at (0,0) { \FonteSimbolos\fontsize{20pt}{0pt}\selectfont \textcolor{TextoEnResalte}{  }};
+          \node[
+              anchor = west,
+              align  = left
+          ] at (0.3,0)
+          {
+              \footnotesize \href{mailto:\imprimeCorreo}{\textbf{\imprimeCorreo}}
+          };
+          % Comentado mentras pensamos se metemos a revista na DAF ou no
+          % \node at (0,-1) {\FonteSimbolos\fontsize{20pt}{0pt}\selectfont \textcolor{TextoEnResalte}{  }};
+          % \node[
+          %     anchor = west,
+          %     align  = left
+          % ] at (0.5,-1)
+          % {
+          %     \href{https://github.com/\imprimeLinkRepositorio}{\texttt{\imprimeLinkRepositorio}}
+          % };
+          \endgroup
+      \end{tikzpicture} \\[1.7cm]
+      %
+      % Logo da USC
+      \begin{center}
+          \includegraphics[width=0.8\linewidth]{logos/usc-negativo-escuro.pdf}
+      \end{center}
+  \end{minipage}
+  \endgroup % <-- este cerra o grupo que contén o de \setlenght\parindent{0pt}
+  \newpage
+  \pagenumbering{arabic}
+}
+
+%%%%%%%%%%%%%%%
+% CONTRAPORTADA
+%%%%%%%%%%%%%%%
+\long\def\Contraportada{%
+  \newgeometry{
+      top    = 5mm,  % marxe superior
+      left   = 6mm,  % marxe esquerdo
+      right  = 6mm,  % marxe dereito
+      bottom = 8mm,  % marxe inferior
+      nohead = true, % desactivar o encabezado
+      nofoot = true, % desactivar o pe de paxina
+  }
+  
+  % FONDO %
+  \AddToShipoutPictureBG*{
+      \put(0,-10){
+          \parbox[b][1.2\paperheight]{\paperwidth}{
+              \vfill
+              \centering
+              {\transparent{0.05}\includegraphics{logos/botafumeiro.png}}
+              \vfill
+          }
+      }
+  }
+  % No caso de poñelo en todas as páxinas, pode pararse con \ClearShipoutPicture
+  {% Textos de despedida e agradecementos
+      \vspace*{2.4cm}
+      \begin{center}
+          \begin{minipage}{0.68\linewidth}
+              {\imprimeDespedida }
+          \end{minipage} \\[1.5cm]
+  
+          \begin{minipage}{0.75\linewidth}
+              \centering
+              { \imprimeAgradecementos }
+          \end{minipage}
+      \end{center}
+  }
+  
+  \thispagestyle{empty}
+  \vspace*{3em}
+  
+  \texttt{\directlua{gitInfo()}}
+  
+  \vfill
+  \vspace{-1cm}
+  \hrulefill
+  
+  % O do QR non sei por qué pero a veces colocase mal. Mirando con
+  % lua-visual-debug pareceme que crea un numero incrible de boxes que pode que
+  % toleen a colocacion doutras cousas. Por agora furrula, polos pelos.
+  \begin{minipage}[c][5cm]{5cm}
+      \begin{center}
+          Edicións anteriores: \\[2mm]
+          \hypersetup{urlcolor=black}
+          \qrset{height = 4cm}%
+          % Que quede para a posteridade que rickrolleei a Celia e a Sebas con este QR
+          \qrcode{\imprimeEdicionsAnteriores}
+      \end{center}
+  \end{minipage}
+  %
+  \hfill % non se deben poñer liñas en branco arredor deste \hfill
+  %
+  \begin{minipage}[c][5cm]{4cm}
+      \begin{center}
+          Participa! (WhatsApp) \\[2mm]
+          \hypersetup{urlcolor=black}
+          \qrset{height = 4cm}%
+          % Que quede para a posteridade que rickrolleei a Celia e a Sebas con este QR
+          \qrcode{\imprimeWhatsApp}
+      \end{center}
+  \end{minipage}
+  %
+  \hfill % deste tampouco
+  %
+  % Co logo da vicerreitoría
+  \begin{minipage}[c][4cm]{9cm}
+      \begin{center}
+          Co financiamento de: \\[2mm]
+          \begin{picture}(5cm,4cm)%
+              \put(-60,30){\hbox{\includegraphics[width=11cm]{logos/vicerreitoria-branco-negro.pdf}}}
+          \end{picture}
+      \end{center}
+  \end{minipage}
+  %
+  % Co logo da USC
+  %\begin{minipage}[c][4cm]{5cm}
+  %    \begin{picture}(5cm,4cm)%
+  %        \put(0,0){\hbox{\includegraphics[width=5cm]{logos/usc-branco-negro.pdf}}}
+  %    \end{picture}
+  %\end{minipage}
+}
+
+
+%%%%%%%%%%%%%
+% DEFINICIÓNS
+%%%%%%%%%%%%%
+
+% Acento gráfico ao lim
+\renewcommand{\lim}{\mathop{\mathrm{lím}}\limits}
+
+% Diferenciais inexactos
+\newcommand*{\dbar}{\ensuremath{\text{\dj}}}
+
+% cargamos funcions de Lua
+\directlua{dofile('lua/funcions.lua')}
+
+
+%%%%%%%%%%%%%%%%%%%%%
+% Como usar este .cls
+%%%%%%%%%%%%%%%%%%%%%
+% O código fonte debería atoparse en github.com/DAF-USC/revista
 %
+% \documentclass{revista}
 % \Numero{001}
 % \Data{Xaneiro do 1900}
 % \ImaxePortada{./revistas/001/imaxes/cern.png}
-% \ComentarioImaxePortada{ Imaxe da portada }
+% \ComentarioImaxePortada{Imaxe da portada}
 % \CorResalte{ff0000} % cores especificos de cada revista, con codigos HTML hex
 % \CorTextoEnResalte{000000}
-% \LinkRepositorio{ guthib.com }
-% \Correo{ correo@correo.correo }
-% \SobreMomentum{ Esta é a revista momentum! }
 % \Participantes{
 %     {\Large \textbf{Dirección:}}     \\[0.5cm]
 %         Carl Sagan                   \\[0.2cm]
@@ -596,10 +907,13 @@
 %     {\Large \textbf{Diseño de Logo}} \\[0.5cm]
 %         Dirac                        \\[0.2cm]
 % }
-% \Despedida{ Adeus! }
-% \Agradecementos{ Grazas a Todos! }
-% \Drive{ https://linkaodrive.com }
-% \WhatsApp{ https://link grupo whatsapp }
+% \Despedida{Adeus!}
+% \Agradecementos{Grazas a Todos!}
+%
+% \begin{document}
+% ...
+% \end{document}
+
 
 % Os comandos anteriores definen as variables. Pa mostralas no pdf hai que usar:
 %
@@ -614,21 +928,3 @@
 % \imprimeLinkRepositorio
 % \imprimeDespedida
 % \imprimeAgradecementos
-% \imprimeDrive
-% \imprimeWhatsApp
-
-% :FACER: remirar estos conteos...
-% \pagenumbering{arabic}\setcounter{page}{1}
-
-%%%%%%%%%%%%%
-% DEFINICIÓNS
-%%%%%%%%%%%%%
-
-% Acento gráfico ao lim
-\renewcommand{\lim}{\mathop{\mathrm{lím}}\limits}
-
-% Diferenciais inexactos
-\newcommand*{\dbar}{\ensuremath{\text{\dj}}}
-
-% cargamos funcions de Lua
-\directlua{dofile('lua/funcions.lua')}
