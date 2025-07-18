@@ -29,6 +29,7 @@
     Path        = ./fontes/LatinModern/,
     Extension   = .otf,
     UprightFont = *-regular,
+    ItalicFont  = *-oblique,
     BoldFont    = *-bold,
 ]{lmsans10}
 
@@ -159,10 +160,19 @@
 \RequirePackage{amsthm}     % definir teoremas
 \RequirePackage{diffcoeff}  % derivadas
 \RequirePackage{esint}      % integrais diferentes
-\RequirePackage{mathrsfs}   % letras reviradas \mathcal
 \RequirePackage{polynomial} % polinomios simples
 \RequirePackage{tensor}     % indices e eso
 \RequirePackage{braket} % :FACER: metin este porque alguen o tiña no artigo, non sei que fai
+\RequirePackage{mathrsfs}   % letras reviradas \mathcal
+% Esto é para eliminar un waring do paquete mathrsfs
+% Orixe da solucion: https://tex.stackexchange.com/a/10701
+% Referencia de \DeclareFontShape: https://web.mit.edu/newtex/doc/latex/base/fntguide/node22.html
+\DeclareFontFamily{U}{rsfs}{\skewchar\font127 }
+\DeclareFontShape{U}{rsfs}{m}{n}{%
+    <-6> rsfs5
+    <6-8> rsfs7
+    <8-> rsfs10
+}{}
 
 % :FACER: seguimos necesitandoe stes dous paquetes?  vvvvvvvvvvv
 \RequirePackage{svrsymbols} % simbolos variados
@@ -403,11 +413,15 @@
         }
     % Aplicamos o estilo de páxina
     \pagestyle{#2}%
-    % Aprobeito pa meter esto aquí. Resetea números nas ecuacións e
-    % figuras
-    \setcounter{equation}{0}
+    % Aprobeito pa meter esto aquí. Resetea números nas figuras
     \setcounter{figure}{0}
 }
+
+% Orixinalmente tamén cambiábamos a numeración das ecuacións dentro de
+% 'Titular' con '\setcounter{equation}{0}, pero dábanos warnings do tipo:
+% ignoring duplicate destination with the name 'equation.1'
+% asique pasamos a facelo deste modo
+\numberwithin{equation}{section}
 
 % Tipografia preciosa. Xoga cos espaciados moi ben para xustificar o texto.
 \RequirePackage{microtype}
@@ -578,6 +592,9 @@
 % PORTADA 
 %%%%%%%%%
 \long\def\Portada{%
+  % Esto de 'pageanchor' é para que non nos de un aviso do tipo
+  % ignoring duplicate destination with the same name 'page.1' etc.
+  \hypersetup{pageanchor=false}
   \pagenumbering{gobble}
   \thispagestyle{empty}
   
@@ -675,6 +692,7 @@
   
   % volvemos a cargar a xeometria que tiñamos no preambulo
   \restoregeometry
+  \hypersetup{pageanchor=true}
 }
 
 %%%%%%%%
