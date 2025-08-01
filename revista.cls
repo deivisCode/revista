@@ -8,7 +8,7 @@
 % CPU (dudo que pase).
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{revista}[2025/07/21 Clase para a revista de Fisica USC]
+\ProvidesClass{revista}[2025/08/01 Clase para a revista de Fisica USC]
 
 \LoadClass[11pt,a4paper,twoside]{article}
 
@@ -882,3 +882,47 @@
 
 % Diferenciais inexactos
 \newcommand*{\dbar}{\ensuremath{\text{\dj}}}
+
+% OPCIONS DA CLASE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Creo un booleano. Fareino 'false' se usamos calquera opcion. Se non usamos
+% ningunha, será 'true', e usarei esto para dar un erro no caso de non usar
+% ningunha opcion
+\newif\ifOpcionsBaleiras
+\OpcionsBaleirastrue % fagoo 'true'
+
+% Un caso límite, se alguén usa unha opción que non existe, soltamos un erro
+\DeclareOption*{%
+    % Véxase sec. 4.8 de cslguide.pdf
+    \ClassError{revista}{%
+        ‘\CurrentOption’ non é unha opción válida.%
+         Opcións posíbeis: simple, completa}{}
+}
+
+% Opción COMPLETA, a cal mostra a portada, índice e contraportada.
+\DeclareOption{completa}{
+    \typeout{Estás a usar a opción ‘\CurrentOption’}
+    % Véxase: LATEX’s hook management, sec. 2.9, en lthook.pdf
+    \AtBeginDocument{%
+        \Portada%
+        \Indice%
+    }
+    \AtEndDocument{%
+        \Contraportada%
+    }
+    \OpcionsBaleirasfalse % fago o booleano 'false'
+}
+
+% Opción SIMPLE, para mostrar só os artigos.
+\DeclareOption{simple}{
+    \typeout{Estás a usar a opción ‘\CurrentOption’}
+    \OpcionsBaleirasfalse % fago o booleano 'false'
+}
+
+\ProcessOptions\relax
+
+% Se non escollemos ningunha destas opcions, salta un erro
+\ifOpcionsBaleiras
+    \ClassError{revista}{Non escolliches ningunha opción.%
+                         Opcións posíbeis: simple, completa}{}
+\fi
