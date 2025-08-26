@@ -372,20 +372,16 @@
 % {}              -> sen subtitulo, debe ir cos parenteses baleiros
 %
 \NewDocumentCommand\Titular{ s m m m m }{%
-    % Primeiro, engadimos unha sección 'baleira'
-    \phantomsection%
     % Mostramos o propio titular, como sempre. Todo dentro dun `center`
     \begin{center}
         % Esto es para que cuando el texto ocupe más de dos líneas, se amplie
-        \vspace*{-5mm}
+        \vspace*{-2.5em}
         % TITULO
-        \begingroup
-            \setstretch{2}\noindent{\color{Resalte}\Huge \textbf{#3}} \\
-        \endgroup
+        \section*{\textcolor{Resalte}{\Huge \textbf{#3}}}
         % AUTORÍA
         \EstaBaleiro{#4}% comprobamos se a autoría está baleira
-            {\vspace*{3mm}}%                             --> se NON hai autor
-            {\vspace*{3mm}{\Large #4} \\ \vspace*{3mm}}% --> se SI hai autor
+            {\vspace*{3mm}}%                                           --> se NON hai autor
+            {\vspace*{3mm}{\vspace*{-1em}\Large #4} \\ \vspace*{3mm}}% --> se SI hai autor
         % SUBTITULO
         \EstaBaleiro{#5}% comprobamos se o subtitulo está baleiro
             {\vspace*{-3mm}}%               --> se NON hai subtitulo
@@ -405,13 +401,13 @@
     \pagestyle{#2}%
     % Aprobeito pa meter esto aquí. Resetea números nas figuras
     \setcounter{figure}{0}
+    \stepcounter{section}
+    \counterwithin*{equation}{section}
+    % Outra opción é que as ecuacións se numeren como
+    % (1.1), (1.2), (2.1), etc. así evitamos repeticions. Deixo varios macros
+    % acá porlas moscas \numberwithin{equation}{section}
+    % \renewcommand\theequation{\arabic{equation}}
 }
-
-% Orixinalmente tamén cambiábamos a numeración das ecuacións dentro de
-% 'Titular' con '\setcounter{equation}{0}, pero dábanos warnings do tipo:
-% ignoring duplicate destination with the name 'equation.1'
-% asique pasamos a facelo deste modo
-\numberwithin{equation}{section}
 
 % Tipografia preciosa. Xoga cos espaciados moi ben para xustificar o texto.
 \RequirePackage{microtype}
