@@ -1,101 +1,129 @@
-(texto non actualizado, estamos en obras ata rematar o verán!)
+<div align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/user-attachments/assets/8ff1b3cd-2f69-4787-96ac-2d010aca5228" />
+    <source media="(prefers-color-scheme: light)" srcset="https://github.com/user-attachments/assets/2e5b6e60-a45c-4bcc-989a-217080c9db41" />
+    <img alt="logo-momentum" src="https://github.com/user-attachments/assets/2e5b6e60-a45c-4bcc-989a-217080c9db41" />
+  </picture> <h1></h1>
+</div>
 
-# Revista MOMENTUM
+*Momentum*, de carácter científico, busca ser un medio de comunicación tanto dentro
+coma fóra da Facultade de Física, coa finalidade de fomentar e cultivar o interese
+e a curiosidade pola física e a ciencia. Por medio de artigos de divulgación, novas
+científicas, entrevistas a personalidades, achegas sobre a historia e filosofía da ciencia,
+e mesmo algún que outro artigo de corte popular, a revista pretende ofrecer unha visión ampla
+e accesíbel.
 
-Este é repositorio oficial da revista **MOMENTUM**, creada de 0 por
-estudantes de grao, máster e doutorado de Física na USC.
+Este proxecto, impulsado polo estudantado de Física da USC, naceu no ano 2025
+co obxectivo de crear un recuncho de expresión que vaia máis aló do estritamente
+académico, aberto ás xeracións actuais, pasadas e vindeiras.
 
-# Contidos
-1. [¿Como contribuír á revista?](#como-contribuír-á-revista)
-2. [Estrutura do repositorio](#estrutura-do-repositorio)
-3. [Estrutura das revistas](#estrutura-das-revistas)
+A equipa de *Momentum* agradece profundamente calquera suxestión. Non dubidedes en deixar
+a vosa pegada!
+
+Exemplares anteriores: [Revista Estudantil Momentum](https://www.usc.gal/gl/centro/facultade-fisica/revista-estudantil-momentum)
+
+Contacto: [revistafisicaUSC@gmail.com](mailto:revistafisicaUSC@gmail.com)
+
+## :memo: Como participar na revista?
+
+Hai varias formas de participar, segundo os intereses e inquedanzas de cada persoa:
+
+- **Produción de contidos**: escribir artigos, entrevistas, pasatempos...,
+xa sexa como colaboración puntual ou de maneira máis continuada. As contribucións
+envíanse a [revistafisicaUSC@gmail.com](mailto:revistafisicaUSC@gmail.com), en
+formato plano ou LaTeX.
+
+- **Comisión de Edición**: encárgase de implementar o deseño visual, garantir a
+reproducibilidade dos códigos e coidar que o formato final sexa limpo, coherente
+e profesional.
+
+- **Comisión de Corrección**: vela pola calidade lingüística da revista a través da
+tradución e localización dos contidos, así como da corrección textual.
+
+- **Comisión de Produción**: xestiona recursos, promove a revista, mantén o contacto
+con institucións e colaboradores externos e procura apoios para garantir a
+lonxevidade do proxecto.
+
+- **Comisión de Dirección**: coordina o proxecto no seu conxunto, vela polo
+mantemento da identidade creativa da revista, coordina a sección de entrevistas
+e aproba os artigos enviados.
+
+O proxecto funciona grazas á participación aberta: non importa se colaboras unha
+vez ou varias, toda achega é valiosa. Se tes dúbidas ou ideas, podes escribirnos
+ao correo ou preguntar nos grupos da DAF e da revista!
+
+## :mag: Índice de contidos
+1. [Estrutura do repositorio](#card_file_box-estrutura-do-repositorio)
+2. [Estrutura das revistas](#newspaper-estrutura-das-revistas)
    - [Revistas](#revistas)
    - [Artigos](#artigos)
-   - [Imaxes](#imaxes)
-   - [Portada](#portada)
-4. [Compilación](#compilación)
-   - [Algunhas dependencias](#algunhas-dependencias)
-   - [¿Pero como compilo isto?](#pero-como-compilo-isto)
+3. [Artigo simplificado](#page_facing_up-artigo-simplificado)
+4. [Compilación](#toolbox-compilación)
+   - [Dependencias](#dependencias)
+   - [Como compilo isto?](#como-compilo-isto)
+5. [Outros enlaces e documentos](#books-outros-enlaces-e-documentos)
 
-## ¿Como contribuír á revista?
+## :card_file_box: Estrutura do repositorio
 
-A mellor maneira de contribuír é enviándonos artigos para publicar ao correo
-revistafisicaUSC@gmail.com As contribucións en forma de código aquí en github
-están limitadas a temas de formato, estilos e similares. Os artigos sempre
-deben pasar polo correo para ser sometidos a triaxe. En xeral, as contribucións
-son abertas a todo o mundo. Encargámonos de dar prioridade aos artigos enviados
-antes, ou aos que necesitan urxencia, pero non queremos preferenciar a ninguén.
-Queremos que todas as persoas poidan participar neste proxecto. Se tendes
-dúbidas, podedes preguntar polo grupo de whatsapp da DAF, ou mellor, polo da
-revista.
+O repositorio contén:
 
-## Estrutura do repositorio
+- `revista.cls` - Clase de LaTeX para a revista.
+- `american-physics-society.csl` - Estilo de citas bibliográficas do Citation Style Language.
+- `funcions.lua` - Códigos feitos en lua relacionados coa compilación e o control de versións.
+- `bibliografia.bib` - Base de datos bibliográfica.
+- `latexmkrc` e `Makefile` - Axudas para compilar a revista.
 
+Cartafoles principais:
+
+- `revistas/` - Contén as edicións da revista, cada unha nun subcartafol numerado
+(`001`, `002`, ...). Cada edición inclúe o ficheiro principal `.tex`, os artigos
+correspondentes `.tex` e un cartafol `imaxes/`.
 ```
 .
-├── revista.cls
-├── portada.tex
-├── contraportada.tex
-│
-├── artigo_simplificado.tex
-│
-├── bibliografia.bib
-├── latexmkrc
-├── Makefile
-├── README.md
-├── .gitignore
-│
-├── logos/
-│  ├── logo1.eps
-│  └── logo2.pdf
-│
-├── fontes/
-│  └── comic_sans/
-│
 └── revistas/
    ├── 001/
    │  ├── revista_001.tex
-   │  ├── nome_apelidos_HISTORIA_DA_CIENCIA.tex
+   │  ├── artigo_TITULO.tex
    │  └── imaxes/
    │     ├── portada_001.png
    │     └── unha_imaxe.jpg
    ├── 002
    │  └── ...
-   ├── 003
-   │  └── ...
-   ├── 004
-   │  └── ...
-   └── 005
-      └── ...
+   └── ...
 ```
-## Estrutura das revistas
+- `logos/` - Logos da universidade, facultade e institucións colaboradoras en PDF.
+- `fontes/` - Tipos de letra empregados na revista.
+- `modelo/` - Cartafol co exemplo de artigo simplificado e as súas dependencias.
+- `trebellos/` - Recursos auxiliares e outros scripts da equipa de edición.
+
+<p align="right"><a href="#mag-índice-de-contidos">(voltar ao índice)</a></p>
+
+## :newspaper: Estrutura das revistas
 ### Revistas
 
-Os arquivos comúns a todas as revistas, como o estilo xeral da
-[portada](./portada.tex), [contraportada](./contraportada.tex), ou o estilo
-xeral da [revista](./revista.cls) están na raíz do proxecto.
+Os **arquivos comúns** a todas as revistas, como o estilo da revista, `revista.cls`,
+e o estilo bibliográfico American Physics Society, `american-physica-society.csl`,
+deben estar na raíz do proxecto.
 
-Cada revista *individual* está dentro do seu propio cartafol. Cada un destes
-directorios está dentro de [`revistas/`](./revistas), ousexa temos cartafoles
-como `revistas/001/`, `revistas/002/`, etc. Dentro destes é onde se gardan os
-arquivos específicos, como os propios artigos formateados, e as imaxes, de cada
-revista.
+Cada **número da revista** ten o seu propio cartafol en [`revistas/`](./revistas),
+e dentro destes é onde se gardan os arquivos específicos de cada revista, como
+os artigos e as imaxes.
 
-O arquivo principal de cada revista noméase como
+O **arquivo principal** de cada revista noméase como, se é a revista número 001,
 `revistas/001/revista_001.tex`. Este é o arquivo principal a compilar, e ten a
-forma seguinte (aproximada)
+forma seguinte (aproximada):
 
 ```latex
-\documentclass{revista}
+% Opcións: simple (só artigos) ou completa (portada, índice e contraportada)
+\documentclass[completa]{revista}
 
-% comandos para definir a informacion de cada revista
+% Comandos para definir a información de cada revista
 \Numero{001}
 \Data{Xaneiro do 1900}
-\ImaxePortada{./revistas/001/imaxes/cern.png}
-\ComentarioImaxePortada{ Imaxe da portada }
-\CorResalte{ff0000} % cores especificos de cada revista, con codigos HTML hex
-\CorTextoEnResalte{000000}
-\SobreMomentum{ Esta é a revista momentum! }
+\ImaxePortada{./revistas/001/imaxes/pedra.jpg} % Imaxe que aparecerá na portada
+\ComentarioImaxePortada{ Comentario que acompaña a imaxe. }
+\CorResalte{ff0000} % Cor específico da revista, en HTML HEX
+\CorTextoEnResalte{000000} % Cor do texto na portada e índice
 \Participantes{
     {\Large \textbf{Dirección:}}     \\[0.5cm]
         Carl Sagan                   \\[0.2cm]
@@ -108,192 +136,178 @@ forma seguinte (aproximada)
 \Agradecementos{ Grazas a Todos! }
 
 \begin{document}
-\input{portada.tex}
-\input{indice.tex}
 
-\input{./revistas/001/nome_apelido_HISTORIA_DA_CIENCIA.tex}
-\input{./revistas/001/nome_apelido_SALSEO_NA_FACULTADE.tex}
+\input{./revistas/001/artigo_HISTORIA_DA_CIENCIA.tex}
+\input{./revistas/001/artigo_SALSEO_NA_FACULTADE.tex}
 
-\input{contraportada.tex}
 \end{document}
 ```
 
-Os comandos `\Numero, \Data, \ImaxePortada, \ComentarioImaxePortada,
-\SobreMomentum, \Despedida, \Agradecementos, \CorResalte, \CorTextoEnResalte
-\Participantes`, e os `\definecolor` deben usarse en cada revista xa que
-conteñen información específica para cada número. Están explicados na [clase da
-revista](./revista.cls).
+Os comandos `\Numero`, `\Data`, `\ImaxePortada`, `\ComentarioImaxePortada`,
+`\CorResalte`, `\CorTextoEnResalte`, `\Participantes`, `\Despedida` e `\Agradecementos`,
+deben estar presentes en cada revista xa que conteñen información específica
+de cada número. No tocante a imaxe da portada, cómpre que sexa *exactamente*
+cadrada para non ter problemas na compilación, isto pode facerse
+con programas como [Inkscape](https://inkscape.org/), [Gimp](https://www.gimp.org/)
+ou [ImageMagick](https://imagemagick.org/)
 
-Adicionalmente, os macros ` \LinkRepositorio, \Correo, \Drive, \WhatsApp`
-defínense na propia clase da revista porque, en principio, conteñen información
-que non tería sentido cambiar entre os números.
+Adicionalmente, tamén se definen os macros `\LinkRepositorio`, `\Correo`,
+`\Drive`, `\WhatsApp` inda que, nun principio, conteñen información
+que non se vai cambiar entre números. Para mostrar calquera destes valores só
+hai que prefixar o macro con imprime, e.g. `\imprimeCorreo` ou `\imprimeNumero`.
 
-Para mostrar calquera desos valores só hai que prefixar o macro con imprime,
-e.g. `\imprimeCorreo, ou \imprimeNumero`
+Máis información sobre a implementación e particularidades na [clase da revista](./revista.cls).
+
+<p align="right"><a href="#mag-índice-de-contidos">(voltar ao índice)</a></p>
 
 ### Artigos
 
-Gárdanse no mesmo directorio que o `revista_001.tex` correspondente,
-simplemente se inclúen no arquivo principal usando `\input{artigo.tex}`. Teñen
-a forma seguinte
+Os artigos gárdanse no mesmo directorio que o `revista_001.tex` correspondente
+e inclúense no arquivo principal usando `\input{artigo.tex}`. Teñen
+a seguinte forma:
 
-```latex
-\Titular*% este comando permite definir a información concreta de cada artigo.
-{Nome do artigo}
-{Axl Rose}
-{divulgacion}
-{
-Pequeno subtítulo para o artigo. Preferiblemente, non moi longo para que non
-lle coma moito espazo ao artigo en sí.
-}
+```LaTeX
+% O comando \Titular permite definir a información concreta de cada artigo
 
-\begin{refsection}   % para que a bibliografía aplique solo a este artigo
-\begin{multicols}{2} % para ter varias columnas
+\Titular*          % O asterisco fai que apareza unha sección nova no Índice
+{divulgacion}      % (Obrigatorio) Estilo  Opcións: divulgacion, historia, actualidadeFacultade,
+                   %                                actualidadeCientifica, filosofia, profesorado,
+                   %                                entrevistas, programacion, pasatempos, anuncios
+{Título do artigo} % (Obrigatorio) Título
+{Axl Rose}         % (Opcional)    Autoría
+{Subtítulo}        % (opcional)    Preferíbelmente non moi longo para que colla ben ^_^
 
-% as distintas partes sepáranse con 'subsections' SEMPRE
-\subsection*{Introdución}
+\begin{multicols}{2} % Para ter varias columnas
 
-bla blah blah
+\subsection*{Introdución} % As distintas partes sepáranse con 'subsections' SEMPRE
 
-\subsection*{Outra sección}
-....
-....
+Bos días anduriños, neste artigo ensinareivos como facer fisión nuclear caseira
+cun barreño e unha fonte de Plutonio-239 nos baños do PDI da facultade.
+
+...
+
+\subsection*{Agradecementos}
+No primeiro lugar, denunciar á DAF polo desamparo económico e agradecer a tódolos marabillosos
+profesores que tiven ata o momento. Por suposto, agradecer tamén a [REDACTADO]
+por axudarme a sacar a fonte do laboratorio de nuclear. Vémonos na próxima!!
 
 \printbibliography
 \end{multicols}
-\end{refsection}
 ```
-O macro `titular` é o centro de cada artigo, o cal cambia cada sección,
-numeracións, formatos dos encabezados, define nomes... Está definido na clase
-da revista. Importante botarlle un ollo ás definicións dos encabezados que se
-poden usar (divulgacion, historia, etc.).
+O macro `\Titular` é o centro de cada artigo: cambia as seccións da revista,
+reinicia numeracións, dá formato aos encabezados, define nomes...
 
-Se queremos engadir unha nova sección ao índice, debemos usar o comando
-`\Titular*`, co asterisco
+Algunhas cousas a ter en conta:
 
-### Imaxes
+- Os encabezados que se poden usar son `divulgacion`, `historia`, `actualidadeFacultade`,
+`actualidadeCientifica`, `filosofia`, `profesorado`, `entrevistas`, `programacion`,
+`pasatempos` e `anuncios`. Podemos engadir máis baixo demanda.
+-  Se queremos engadir unha nova sección ao índice, debemos usar o comando
+`\Titular*`, co asterisco.
+- O macro do `\Titular` ten catro opcións (estilo, título, autor e subtítulo),
+das cales só as dúas primeiras son obrigatorias, as outras dúas poden quedar
+en branco.
 
-Cada revista ten as imaxes gardadas nun subcartafol ao lado do documento
-correspondente. Nos artigos editados só hai que facer:
-```latex
-\includegraphics{./revistas/001/imaxes/imaxebonita.png}
-```
-Neste proxecto usamos o sistema [GIT-LFS](https://git-lfs.com/) para manexar
-arquivos binarios, entre os cales están as imaxes. Inda así, é recomendable que
-non sexan demasiado grandes. Podedes usar [Gimp](https://www.gimp.org/) ou,
-como fago eu, [convert](https://imagemagick.org/), para reducirlles algo o
-tamaño.
+<p align="right"><a href="#mag-índice-de-contidos">(voltar ao índice)</a></p>
 
-### Portada
+## :page_facing_up: Artigo simplificado
 
-Esperamos poder crear unha portada distinta para cada número. A imaxe correspondente
-defínese en cada revista_123.tex no comando `\ImaxePortada`. A imaxe da portada
-debe ter forma cadrada *exactamente*
+Existe un modelo de artigo simplificado para a xente que queira utilizalo
+no proceso de creación de contido ou que queira fedellar coa clase da revista.
+O artigo simplificado non require preocuparse pola estrutura do proxecto nin pola
+inicialización dos macros, polo que debería ser máis rápido de compilar.
+Tamén inclúe numerosos comentarios sobre as formas preferidas para engadir
+imaxes, citas e referencias.
 
-## COMPILACIÓN
+Podedes encontralo nos [*releases*](https://github.com/DAF-USC/revista/releases) da revista.
 
-### Algunhas dependencias
+<p align="right"><a href="#mag-índice-de-contidos">(voltar ao índice)</a></p>
+
+## :toolbox: Compilación
+
+### Dependencias
 
 Este proxecto usa [LuaLaTeX](https://www.luatex.org/) para o proceso de
-compilación, xa que nos da vantaxes no uso de distintas tipografías, danos
-acceso a `\directlua`, e danos máis opcións de depurado usando
-[lua-visual-debug](https://www.ctan.org/search?phrase=lua-visual-debug)
-
-As tipografías usadas están incluídas no directorio [`fontes`](./fontes/),
+compilación, xa que nos dá vantaxes no uso de distintas tipografías, dá
+acceso a `\directlua`, opcións de depurado usando o paquete
+[lua-visual-debug](https://www.ctan.org/search?phrase=lua-visual-debug), e máis
+facilidades á hora de crear documentos accesíbeis.
+As tipografías usadas están incluídas no directorio `fontes/`,
 polo que non é necesario instalalas.
 
-Para os paquetes e resto de dependencias, é recomendable unha instalación
-completa de TeXLive, inda que seguramente MiKTeX tamén funcione. Na clase da
-revista inclúese un `\listfiles` polo que cada vez que se compila un documento
-deberían aparecer listados todos os ficheiros `*.sty` e similares que se están
-usando dentro da logfile.
+Dependendo de onde se vaia compilar o proxecto hai dúas rutas:
 
-Para o logo da USC é necesario ter `epstopdf`.
+- Instalación local:
+  - Para os paquetes, é recomendábel unha **instalación completa de TeX Live 2025**,
+xa que é a única versión que aseguramos que funcione e está dispoñíbel en tódolos
+sistemas operativos.
+  - En Windows e macOS, MiKTeX descarga a última versión dos paquetes segundo
+sexan necesarios dende o repositorio oficial, CTAN, polo que tamén debería
+funcionar.
+  - Se ides facer **git clone** do repositorio precisaredes instalar tamén `git-lfs`,
+  que é o que empregamos para evitar gardar copias completas de todos os ficheiros
+  pesados (imaxes, PDFs, fontes) en cada versión. Usando LFS, descárganse só as
+  versións actuais e mantéñense punteiros ás anteriores, o que reduce moito o
+  tamaño do repo. Se clonades o repositorio sen telo instalado, en vez dos
+  ficheiros reais, teredes eses punteiros de texto e o proxecto dará erros na
+  compilación.
+- Execución en liña (Overleaf):
+  - No Overleaf ides a `Menu -> Settings` e cambiades `Compiler: LuaLaTeX` e
+  `TeX Live version: 2024`.
+  - **Ollo!** Coa última actualización reduciuse o tempo de compilación, co que é
+  posíbel que non podades compilar o proxecto enteiro, só artigos individuais
+  ou, en ocasións, nin iso.
 
-### ¿Pero como compilo isto?
+Solución de erros:
 
-Quen use sistemas online como Overleaf, poden simplemente descargar o proxecto
-completo premendo no botón grande e verde na páxina principal que pon **CODE**,
-e descargando un `.zip`. Este pode importarse normalmente a overleaf.
-Recordade seleccionar no panel esquerdo o arquivo principal, que será,
-por exemplo, `revistas/001/revista_001.tex`
+- (Só TeX Live) Usamos o paquete `citation-style-language` para a bibliografía.
+Recentemente, actualizouse para solucionar un erro relacionado coa bibliografía
+dependente da sección (cortesía do noso [@deivisCode](https://github.com/deivisCode)),
+e esta versión aínda non está en TeX Live. Polo que, para que funcione
+correctamente, teredes que instalar o paquete manualmente no voso *texmf tree*.
+Para iso, descargade o [paquete do CTAN](https://ctan.org/pkg/citation-style-language)
+e descomprimídeo no seguinte directorio (previamente creado):
+    - Linux: `$HOME/texmf/tex/latex/csl`
+    - Windows: `C:\Users\<o-voso-usuario>\texmf\tex\latex\csl`
+    - macOS: `~/Library/texmf/tex/latex/csl`
 
-Dado que o proxecto non está moi optimizado, fixen un arquivo simplificado
-chamado [`artigo_simplificado.tex`](./artigo_simplificado.tex) o cal se pode
-compilar sen portada nin contraportada. Debería ser máis sinxelo de usar porque
-non hai que preocuparse pola estrutura deste proxecto, nin pola inicialización
-dos macros; e debería ser algo máis rápido de compilar por ser máis simple. O
-propio arquivo está documentado asique quen sexa curioso que o abra e o lea.
 
-Por outro lado, para as persoas sen medo a usar un ordenador só hai que
-escribir na termianl, en Linux
+<p align="right"><a href="#mag-índice-de-contidos">(voltar ao índice)</a></p>
+
+### Como compilo isto?
+
+A forma máis sinxela de descargar e compilar o proxecto é
+
+1. Neste repositorio, premer o botón verde de *CODE* e descargar o ZIP.
+2. Compilalo:
+   - (Local) Tras descomprimilo, abrir o proxecto no voso editor de confianza
+   e compilar o ficheiro da revista, por exemplo `revistas/001/revista_001.tex`.
+   - (Overleaf) Importar o ZIP e no panel esquerdo seleccionar o ficheiro
+   principal, por exemplo `revistas/001/revista_001.tex`.
+
+Alternativamente, se tedes preferencias máis minimalistas, podedes compilar as
+revistas no terminal co `latexmk`:
 
 ```bash
 latexmk ./revistas/001/revista_001.tex
 ```
-Esto debería funcionar tamén en windows con Powershell 5 ou 7 (creo)
-Tamén se adxunta unha Makefile para os que usen Linux e similares. É posible facer
+Tamén deixamos un `Makefile` moi conveniente para os que usen Linux e similares,
+co que é posíbel facer:
 
 ```bash
-make numero=001 # compilar a revista numero 001
-make limpa      # limpar os arquivos auxiliares
+make numero=001 # Compilar a revista número 001
+make limpa      # Limpar os arquivos auxiliares
+make modelo     # Obter un ZIP cos arquivos para o artigo simplificado
 ```
 
-Por defecto, ca configuración de latexmk adxunta, ao compilar unha revista
+Por defecto, ca configuración de `latexmk` adxunta, ao compilar unha revista
 o PDF que se xere gárdase no directorio `./pdf/` e os arquivos auxiliares
 en `./aux/`.
 
-# Varios links e documentos utiles
+<p align="right"><a href="#mag-índice-de-contidos">(voltar ao índice)</a></p>
 
-## Paxinas oficiais principais
+## :books: Outros enlaces e documentos
+O repositorio ten unha [Wiki](https://github.com/DAF-USC/revista/wiki) na que
+se inclúen ligazóns útiles e documentos relevantes da revista.
 
-- Proxecto de Latex principal: https://www.latex-project.org/
-- Arquivo principal con paquetes, documentos e ferramentas: https://www.ctan.org/
-- LuaTex: https://www.luatex.org/
-
-## Documentacions e repositorios principais
-
-LaTeX2e
-- Documentos (e arquivos) base oficiais (inclue **luatex** en ltluatex.pdf): https://ctan.org/tex-archive/macros/latex/base
-- Documentos (e arquivos) base oficiais **(PRE-PUBLICACION)**: https://ctan.org/tex-archive/macros/latex-dev/base
-- Repositorio: https://github.com/latex3/latex2e
-
-LaTeX3 (expl3)
-- Documentos (e arquivos) de LaTeX3: https://ctan.org/tex-archive/macros/latex/required/l3kernel
-- Documentos (e arquivos) de LaTeX3 **(PRE-PUBLICACION)**: https://ctan.org/tex-archive/macros/latex-dev/required/l3kernel
-- Repositorio (expl3): https://github.com/latex3/latex3
-
-Experimetal
-- LaTeX Laboratory, cousas máis novedosas e en desenvolvemento, e.g. o `\DocumentMetadata`: https://ctan.org/tex-archive/macros/latex/required/latex-lab
-- LaTeX Laboratory **(PRE-PUBLICACION)**: https://ctan.org/tex-archive/macros/latex-dev/required/latex-lab
-- Un monton de docs que están aparte (e.g. l3pdfmeta): https://ctan.org/tex-archive/macros/latex/contrib/pdfmanagement-testphase
-
-Docs principais de Luatex
-- Paquete en CTAN: https://ctan.org/pkg/luatex
-- Funcions de Lua (potentes): https://ctan.org/tex-archive/macros/luatex/latex e https://ctan.org/tex-archive/macros/luatex/generic
-
-## Documentacións utiles
-
-- Preguntas e Respostas máis importantes: https://tex.stackexchange.com/
-- Overleaf Docs: https://www.overleaf.com/learn
-- LaTeX Wikibook (algo desactualizado pero ten cousas da base de La/TeX moi utiles): https://en.wikibooks.org/wiki/LaTeX
-- Varias referencias: https://latexref.xyz/
-- Preguntas comuns: https://texfaq.org/
-
-## Simbolos e tipografias
-
-- Mega lista de fontes: https://tug.org/FontCatalogue/
-- Mega lista de simbolos: https://www.ctan.org/pkg/comprehensive
-
-## Tagging project
-
-- Proxecto (non de LaTeX): https://taggedpdf.com/
-- Introduccion ao uso do proxecto: https://latex3.github.io/tagging-project/documentation/prototype-usage-instructions
-- Compatibilidade de varios paquetes e clases co proxecto: https://latex3.github.io/tagging-project/tagging-status/
-- Proxecto en CTAN, coa documentación oficial: https://www.ctan.org/pkg/tagpdf
-- Repositorio de `tagpdf`: https://github.com/latex3/tagpdf
-
-## Outros
-
-- Lista con moitas cousas LaTeXeras: https://github.com/egeerardyn/awesome-LaTeX
-- Logotipia de LaTeX: https://github.com/latex3/branding
+<p align="right"><a href="#mag-índice-de-contidos">(voltar ao índice)</a></p>
