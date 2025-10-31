@@ -908,11 +908,11 @@
     % No caso de poñelo en todas as páxinas, pode pararse con
     % \ClearShipoutPicture
     {% Textos de despedida e agradecementos
-        \vspace*{2.4cm}
+        \vspace*{2.2cm}
         \begin{center}
             \begin{minipage}{0.68\linewidth}
                 {\imprimeDespedida }
-            \end{minipage} \\[1.5cm]
+            \end{minipage} \\[1cm]
 
             \begin{minipage}{0.75\linewidth}
                 \centering
