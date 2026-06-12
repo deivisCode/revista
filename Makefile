@@ -46,7 +46,7 @@ metodo := compile
 OPCIONS_TYPST := \
 	--format pdf              \
 	--root .                  \
-	--pdf-standard 2.0        \
+	--pdf-standard ua-1,a-2a  \
 	--diagnostic-format short \
 	--ignore-system-fonts     \
 	--ignore-embedded-fonts   \
