@@ -177,9 +177,9 @@
 
 }
 
-#if version == "cor" {
+#if version == "C" {
     propaganda( estilo : "cor" )
-} else if version == "branca" {
+} else if version == "B" {
     propaganda( estilo : "branca" )
 } else {
     panic("A propaganda ou é 'cor' ou 'branca'")

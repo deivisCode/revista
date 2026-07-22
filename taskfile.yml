@@ -1,0 +1,131 @@
+version: '3'
+
+tasks:
+
+  revista:
+    desc: Compila un número específico da revista
+    vars:
+      NUMERO: '{{.numero | default "001"}}'
+      RAMA:
+        sh: git rev-parse --abbrev-ref HEAD
+      HASH:
+        sh: git rev-parse --short HEAD
+      DIRT:
+        sh: test -z "$(git status --porcelain)" && echo "" || echo "*"
+      QUEN:
+        sh: git log -1 --format="%an"
+      OPCIONS_TYPST: >-
+        --format pdf
+        --root .
+        --pdf-standard 2.0
+        --diagnostic-format short
+        --ignore-system-fonts
+        --ignore-embedded-fonts
+        --font-path=fontes
+        --deps-format=json
+        --input numero={{.NUMERO}}
+    sources :
+      - revistas/{{.NUMERO}}/revista_{{.NUMERO}}.typ
+      - revistas/{{.NUMERO}}/revista_{{.NUMERO}}.typ
+      - revistas/{{.NUMERO}}/datos_{{.NUMERO}}.typ
+      - revistas/{{.NUMERO}}/*
+      - revistas/{{.NUMERO}}/imaxes/*
+      - estilo.typ
+      - momentum-citacions.csl
+      - logos/*
+      - fontes/NerdFonts/*
+      - fontes/NewComputerModern/*
+      - fontes/Roboto/*
+    generates:
+      - .pdf/revista_{{.NUMERO}}.pdf
+    cmds:
+      - echo "### Tarefa {{.TASK}}, número {{.NUMERO}}"
+      - >-
+        typst compile
+        {{.OPCIONS_TYPST}}
+        --input hash={{.HASH}}
+        --input dirt={{.DIRT}}
+        --input rama={{.RAMA}}
+        --input quen={{.QUEN}}
+        revistas/{{.NUMERO}}/revista_{{.NUMERO}}.typ
+        .pdf/revista_{{.NUMERO}}.pdf
+
+  paxinas_propaganda:
+    deps : [revista]
+    vars:
+      NUMERO: '{{.numero | default "001"}}'
+    sources:
+      - .pdf/revista_{{.NUMERO}}.pdf
+    generates:
+      - .pdf/paxinas_propaganda_{{.NUMERO}}_1.pdf
+      - .pdf/paxinas_propaganda_{{.NUMERO}}_2.pdf
+      - .pdf/paxinas_propaganda_{{.NUMERO}}_3.pdf
+    cmds:
+      - echo "### Tarefa {{.TASK}}, número {{.NUMERO}}"
+      - >-
+        gs
+        -q -dBATCH -dNOPAUSE -dSAFER -sDEVICE=pdfwrite
+        -sOutputFile=.pdf/paxinas_propaganda_{{.NUMERO}}_%d.pdf
+        -sPageList=1,2,3
+        -f .pdf/revista_{{.NUMERO}}.pdf
+
+  propaganda:
+    desc: Compila unha propaganda concreta
+    deps: [paxinas_propaganda]
+    vars:
+      NUMERO: '{{.numero | default "001"}}'
+      OPCIONS_TYPST: >-
+        --format pdf
+        --root .
+        --pdf-standard 2.0
+        --diagnostic-format short
+        --ignore-system-fonts
+        --ignore-embedded-fonts
+        --font-path=fontes
+        --deps-format=json
+        --input numero={{.NUMERO}}
+    sources:
+      - trebellos/propaganda_V.typ
+      - trebellos/propaganda_H.typ
+    generates:
+      - .pdf/propaganda_*_*_*.pdf
+    cmds:
+      - echo "### Tarefa {{.TASK}}, número {{.NUMERO}}"
+      - for:
+          matrix:
+            COR: ['B', 'C']
+            LAO: ['H', V]
+        cmd: >-
+          typst compile
+          {{.OPCIONS_TYPST}}
+          --input version={{.ITEM.COR}}
+          --timings=.aux/perf_propaganda_{{.ITEM.LAO}}_{{.ITEM.COR}}_{{.NUMERO}}.json
+          --deps=.aux/deps_propaganda_{{.ITEM.LAO}}_{{.ITEM.COR}}_{{.NUMERO}}.json
+          trebellos/propaganda_{{.ITEM.LAO}}.typ .pdf/propaganda_{{.NUMERO}}_{{.ITEM.LAO}}_{{.ITEM.COR}}.pdf
+
+  todo:
+    desc: Compila absolutamente todo
+    vars:
+      numeros_revistas:
+        sh: ls revistas/
+    cmds:
+      - echo "### Tarefa {{.TASK}}. En total, {{len .numeros_revistas}}"
+      - for: { var: numeros_revistas }
+        task: revista
+        vars:
+          numero: '{{.ITEM}}'
+      - for: { var: numeros_revistas }
+        task: propaganda
+        vars:
+          numero: '{{.ITEM}}'
+    generates:
+      - .pdf/paxinas_propaganda_{{.NUMERO}}_1.pdf
+      - .pdf/paxinas_propaganda_{{.NUMERO}}_2.pdf
+      - .pdf/paxinas_propaganda_{{.NUMERO}}_3.pdf
+      - .pdf/propaganda_*_*_*.pdf
+      - .pdf/revista_*.pdf
+
+  limpa:
+    desc: Limpa os directorios auxiliares
+    cmds:
+      - rm -rf .aux/* .pdf/*

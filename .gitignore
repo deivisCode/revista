@@ -1,6 +1,7 @@
 # diretorios auxiliares
 .pdf/
 .aux/
+.task/
 
 # arquivos comprimidos
 *.zip
