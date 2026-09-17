@@ -2,6 +2,11 @@ version: '3'
 
 tasks:
 
+  limpa:
+    desc: Limpa os directorios auxiliares
+    cmds:
+      - rm -rf .aux/* .pdf/*
+
   revista:
     desc: Compila un número específico da revista
     vars:
@@ -107,6 +112,7 @@ tasks:
     desc: Compila absolutamente todo
     vars:
       numeros_revistas:
+        # NUMEROS := $(patsubst revista_%.typ, %, $(notdir $(wildcard revistas/*/revista_*.typ)))
         sh: ls revistas/
     cmds:
       - echo "### Tarefa {{.TASK}}. En total, {{len .numeros_revistas}}"
@@ -124,8 +130,3 @@ tasks:
       - .pdf/paxinas_propaganda_{{.NUMERO}}_3.pdf
       - .pdf/propaganda_*_*_*.pdf
       - .pdf/revista_*.pdf
-
-  limpa:
-    desc: Limpa os directorios auxiliares
-    cmds:
-      - rm -rf .aux/* .pdf/*
