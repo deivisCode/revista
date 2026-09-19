@@ -622,7 +622,7 @@
                     align   : (left + top),
                     {
                         let p = counter(page).get().first()
-                        [*#numbering("1",p)*]
+                        [*#numbering("1",p)*#h(1fr)#text(font:_sans.familia, fill: rgb(datos.cor_resalte), [MOMENTUM])]
                     }
                 )
             } else {
@@ -633,7 +633,7 @@
                     align   : (right + top),
                     {
                         let p = counter(page).get().first()
-                        [*#numbering("1",p)*]
+                        [#text(font:_sans.familia, fill: rgb(datos.cor_resalte), [MOMENTUM])#h(1fr)*#numbering("1",p)*]
                     }
                 )
             }
