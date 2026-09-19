@@ -40,7 +40,7 @@
 
     // Cor do fondo da propaganda
     set page(
-        fill: if estilo == "cor" { rgb(datos.cor_resalte) } else { rgb(datos.cor_texto) }
+        fill: if estilo == "cor" { rgb(datos.cor_resalte) } else { white }
     )
 
     // Cor do texto, depende do estilo da propaganda

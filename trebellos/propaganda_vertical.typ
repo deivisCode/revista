@@ -37,7 +37,7 @@
 
     // Cor do fondo da propaganda
     set page(
-        fill: if estilo == "cor" { rgb(datos.cor_resalte) } else { rgb(datos.cor_texto) }
+        fill: if estilo == "cor" { rgb(datos.cor_resalte) } else { white }
     )
 
     // Cor do texto, depende do estilo da propaganda
@@ -52,7 +52,7 @@
             size   : 25pt,
             weight : "bold",
             fill   : rgb(datos.cor_resalte).darken(70%)
-        )[_Revista estudantil_],
+        )[Revista estudantil],
         text(size: 75pt, weight: "bold")[Momentum],
     )
 
