@@ -51,7 +51,7 @@ OPCIONS_TYPST := \
 	--format pdf              \
 	--root .                  \
 	--pdf-standard 2.0        \
-	--no-pdf-tags             \
+	--pdf-tagged=false        \
 	--diagnostic-format short \
 	--ignore-system-fonts     \
 	--ignore-embedded-fonts   \
