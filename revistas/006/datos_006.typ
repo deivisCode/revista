@@ -12,8 +12,11 @@
         "/revistas/006/artigo_CLUB_FOTO.typ"
     ),
 
-    cor_resalte: "#DEB887",
-    cor_texto: "#33334f",
+    // cor_resalte: "#DEB887", // veige
+    // cor_texto: "#22224f",   //
+
+    cor_resalte: "701224",  // viño
+    cor_texto: "FEFEFE",
 
     imaxe_portada: "revistas/006/imaxes/PORTADA.jpeg",
 
