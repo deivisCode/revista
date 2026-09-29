@@ -40,12 +40,7 @@
 
     // Cor do fondo da propaganda
     set page(
-        fill: if estilo == "cor" { rgb(datos.cor_resalte) } else { white }
-    )
-
-    // Cor do texto, depende do estilo da propaganda
-    set text(
-        fill: if estilo == "cor" { rgb(datos.cor_texto) } else { rgb(datos.cor_resalte) }
+        fill: if estilo == "cor" { rgb(datos.cor_1) } else { white }
     )
 
     grid(
@@ -64,9 +59,13 @@
                     text(
                         size   : 25pt,
                         weight : "bold",
-                        fill   : rgb(datos.cor_resalte).darken(70%)
+                        fill   : rgb(datos.cor_2)
                     )[Revista\ estudantil],
-                    text(size: 75pt, weight: "bold")[Momentum],
+                    text(
+                        size: 75pt,
+                        weight: "bold",
+                        fill: if estilo == "cor" { white } else { rgb(datos.cor_1) }
+                    )[Momentum],
                 )
             ),
 
@@ -120,13 +119,13 @@
             {
                 set align(center + horizon)
                 set text(size: 1.4em)
-                set text(fill: if estilo == "cor" { rgb(datos.cor_texto) } else { rgb(datos.cor_resalte).darken(80%) })
+                set text(fill: rgb(datos.cor_2))
                 block(
                     width  : 90%,
                     height : 90%,
                     inset  : 0.7em,
-                    fill   : rgb(datos.cor_resalte).lighten(25%),
-                    stroke : rgb(datos.cor_resalte).darken(50%) + 3pt,
+                    fill   : rgb(datos.cor_3),
+                    stroke : rgb(datos.cor_4) + 3pt,
                     radius : 1em,
                     grid(
                         rows: (1fr,1fr),

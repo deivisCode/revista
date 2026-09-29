@@ -12,8 +12,20 @@
         "/revistas/006/artigo_CLUB_FOTO.typ"
     ),
 
-    cor_resalte: "ff0000",
-    cor_texto: "ffffff",
+    // cor_resalte: "701224",  // viño
+    // cor_texto: "FEFEFE",
+    cor_resalte: "#DDDD00",  // viño
+    cor_texto: "FEFEFE",
+
+    // cor_1: "#DDDD00", // PRINCIPAL. Debe ter bo contraste ca cor branca
+    // cor_2: "#33333f", // CONTRASTE CO PRINCIPAL (e tamén co branco)
+    // cor_3: "#E9E959", // SECUNDARIO
+    // cor_4: "#33333f", // CONTRASTE CO SECUNDARIO
+
+    cor_1: "#701224", // PRINCIPAL. Debe ter bo contraste ca cor branca
+    cor_2: "#FEFEFE", // CONTRASTE CO PRINCIPAL (e tamén co branco)
+    cor_3: "#701224", // SECUNDARIO
+    cor_4: "#FEFEFE", // CONTRASTE CO SECUNDARIO
 
     imaxe_portada: none,
 

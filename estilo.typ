@@ -254,7 +254,7 @@
         x:0,y:0,
         block(
             {
-                text( fill: rgb(datos.cor_resalte), size: 70pt)[*$arrow("M")$*]
+                text( fill: rgb(datos.cor_1), size: 70pt)[*$arrow("M")$*]
                 text(size: 70pt)[*OMENTUM*]
             }
         )
@@ -277,9 +277,9 @@
         block(
             inset  : 13pt,
             stroke : 2pt,
-            fill   : rgb(datos.cor_resalte),
+            fill   : rgb(datos.cor_1),
             text(
-                fill : rgb(datos.cor_texto),
+                fill : rgb(datos.cor_2),
                 size : 17pt,
                 mono[Núm.#sys.inputs.at("numero") #h(1fr) #datos.data_mes #datos.data_ano]
             )
@@ -373,7 +373,7 @@
         // O rectángulo de cor do lado dereito
         background : place(
             right + top,
-            rect(fill: rgb(datos.cor_resalte).lighten(35%), height: 100%, width: 8cm),
+            rect(fill: rgb(datos.cor_3), height: 100%, width: 8cm),
         ),
         margin: ( top : 20mm, left : 10mm, right : 10mm, bottom : 25mm ),
     )
@@ -381,7 +381,13 @@
     // participantes, ligazóns, etc.
     show grid.cell: eso => {
         if eso.x == 2 {
-            set text( fill: rgb(datos.cor_texto))
+            set text(
+                fill: rgb(datos.cor_4),
+                // fill    : color.mix(
+                //     (rgb(datos.cor_1), 50%),
+                //     (rgb(datos.cor_1).negate(), 100%),
+                // ),
+            )
             set par(spacing: 0pt)
             eso
         } else { eso }
@@ -442,7 +448,12 @@
                         // Que mostra a ligazón
                         {
                             text(
-                                fill    : rgb(datos.cor_resalte).darken(20%),
+                                fill    : rgb(datos.cor_1).darken(20%),
+                                // fill    : color.mix(
+                                //     space: rgb,
+                                //     rgb(datos.cor_1),
+                                //     rgb(datos.cor_1).negate(space: rgb),
+                                // ),
                                 font    : _semi.familia,
                                 stretch : _semi.estiramento,
                                 [
