@@ -1,10 +1,10 @@
 #import("/estilo.typ"): *
 
 #show: Artigo.with(
-  titulo: [Entrevista: Begoña Vila],
-  subtitulo: [A observación espacial dende o centro máis icónico do mundo],
-  autoria: [Gemma Ruíz Lavandeira],
-  tema: "ENTREVISTA",
+  titulo: [Entrevista a Begoña Vila Costas],
+  subtitulo: [A observación espacial dende o centro máis icónico do mundo.],
+  autoria: [Gemma Ruiz Lavandeira],
+  tema: "ENTREVISTAS",
 )
 
 #show: columns
@@ -13,9 +13,9 @@ María Begoña Vila Costas naceu en Vigo un ano despois de que John Glenn se
 convertese no primeiro estadounidense en orbitar a Terra. Este fito
 histórico da NASA pareceu marcar a traxectoria desta galega formada entre a
 Universidade de Santiago de Compostela e o Instituto de Astrofísica de  //As Canarias levan artigo en galego, pero vou respectar a
-Canarias, que se doutorou en Astrofísica na Universidade de Manchester.  //forma orixinal ao tratarse dunha institución. 
+Canarias, que se doutorou en Astrofísica na Universidade de Manchester.  //forma orixinal ao tratarse dunha institución.
 
-A súa pegada continuou ata O Canadá, onde traballou nunha empresa baixo a
+A súa pegada continuou ata Canadá, onde traballou nunha empresa baixo a
 dirección da Axencia Espacial dese país, deseñando e construíndo o Fine
 Guidance Sensor, que empregaría a NASA para o telescopio espacial James Webb. A
 raíz desta colaboración, pasou a formar parte do centro de voo espacial Goddard,
@@ -51,7 +51,7 @@ and Slitless Spectrograph (NIRISS) --. Eles coñeceron o meu traballo como enxe�
 de sistemas neses dous instrumentos, gustáballes ese traballo e aprenderon a
 confiar en min. Cando entregamos os instrumentos para a integración do telescopio
 en Goddard, tivo sentido pedirme que seguise o meu traballo xa alí -- en parte
-polo ben que os coñecía, pero tamén sabendo que podía encargarme doutras cousas, 
+polo ben que os coñecía, pero tamén sabendo que podía encargarme doutras cousas,
 xa que tiñan fe de que sería unha boa adición ao seu equipo.
 
 Ou sexa, é resultado de moito traballo ao longo da miña vida, de aceptar novos
@@ -59,8 +59,7 @@ retos, pero tamén de prepararse e facer as cousas o mellor que se poida co equi
 e inspirar a confianza de que se vai cumprir aquilo do que se é responsable.
 
 #figure(
-  image("/revistas/006/imaxes/ENTREVISTA_1.png"),
-  caption: [Fotografía de Begoña Vila.]
+  image("/revistas/006/imaxes/ENTREVISTA_BEGOÑA_1.jpg")
 )
 
 #Pregunta[
@@ -78,14 +77,22 @@ necesario para a ciencia e que o telescopio se manteña estable cando os datos
 científicos se están tomando -- é como se queres tomar unha foto coa cámara,
 pero se a cámara se está movendo, a foto sería movida. Facemos isto buscando
 unha estrela en particular en cada zona do ceo que se queira mirar e mandando a
-información da súa posición moi precisamente -- 1 millisegundo de arco (mas) --
+información da súa posición moi precisamente -- 1 milisegundo de arco (mas) --
 16 veces cada segundo. Esta información é recibida polo control de altitude do
 telescopio, que pode mover un espello para que a estrela se quede exactamente
 nesa posición cando os datos científicos se están tomando.
 
-O telescopio Webb pode observar galaxias, estrelas, etc., obxectos moi afastados 
+O telescopio Webb pode observar galaxias, estrelas, etc., obxectos moi afastados
 -- os primeiros que se formaron no Universo --, pero tamén pode observar no noso
 Sistema Solar. O instrumento de guía funciona distinto neste último tipo de observacións.
+
+#figure(
+    image("/revistas/006/imaxes/ENTREVISTA_BEGOÑA_2.jpg"),
+    caption: [
+        Begoña Vila nas probas do baleiro do telescopio James Webb, Güiana
+        Francesa. Fonte: NASA.
+    ]
+) <fig:begoña:proba>
 
 O instrumento NIRISS ten unha roda con filtros para poder facer distintas
 imaxes en distintas lonxitudes de onda e tamén ten elementos que dispersan a
@@ -118,15 +125,14 @@ grande para executalas.
   entre NASA e ESA?
 ]
 
-Foi moi especial para min estar na Güiana Francesa para as últimas probas
-do telescopio, poder participar no lanzamento e tamén poder facer a
-transmisión dese lanzamento en español cun compañeiro do equipo
-de Ariane 5, o foguete contribuído pola ESA. Sabía que a miña familia
-e amigos estarían mirando e era como falar con eles directamente.
-O lanzamento foi o regalo de Nadal mais desexado para todo o
-equipo que traballamos neste telescopio, e teño un recordo moi especial
-deses case dous meses que pasei alí -- inda que foi cando había
-restricións pola covid que tivemos que coordinar.
+Foi moi especial para min estar na Güiana Francesa para as últimas probas do
+telescopio (véxase a @fig:begoña:proba), poder participar no lanzamento e tamén
+poder facer a transmisión dese lanzamento en español cun compañeiro do equipo
+de Ariane 5, o foguete contribuído pola ESA. Sabía que a miña familia e amigos
+estarían mirando e era como falar con eles directamente. O lanzamento foi o
+regalo de Nadal mais desexado para todo o equipo que traballamos neste
+telescopio, e teño un recordo moi especial deses case dous meses que pasei alí
+-- inda que foi cando había restricións pola COVID que tivemos que coordinar.
 
 Despois do lanzamento, xa me volvín a Baltimore, onde está o centro de operacións
 de Webb, no STScI (Space Telescope Science Institute) para apoiar os 6 meses
@@ -143,6 +149,14 @@ enriquecedor.
   NASA). Que papel vai xogar na exploración espacial e que o vai diferenciar do
   Hubble ou do James Webb?
 ]
+
+#figure(
+    image("/revistas/006/imaxes/ENTREVISTA_BEGOÑA_3.jpg"),
+    caption: [
+        Foguete Falcon Heavy de SpaceX, cargando o telescopio espacial Nancy
+        Grace Roman. Fonte: NASA/Joel Kowsky.
+    ]
+)
 
 Teño a sorte de seguir traballando no Webb co instrumento de guía, pero tamén de
 poderme unir ao equipo doutro telescopio destacado da NASA -- o Nancy
@@ -183,7 +197,7 @@ sorte de empezar a participar un pouco no seu instrumento de guía. Este novo
 telescopio combinará o coñecemento de Webb cun espello moi grande feito de
 espellos máis pequenos e con instrumentos avanzados, un deles un avance baseado
 en Roman dun coronógrafo (un instrumento que pode tapar a luz da estrela para
-buscar planetas arredor) -- neste caso, como o di o nome do telescopio, 
+buscar planetas arredor) -- neste caso, como o di o nome do telescopio,
 teremos planetas candidatos que xa pensamos que poderían ter unha
 atmosfera que mostre compoñentes onde a vida se poida dar (auga líquida,
 dióxido de carbono, metano, etc), inda que non saibamos como chegar a
@@ -208,7 +222,7 @@ Penso que inda que os EUA é un país adiantado no espazo, outras axencias espac
 como a Axencia Europea están tamén á cabeza. O futuro é moito máis de
 colaboración entre axencias, xa que os proxectos que se buscan son para toda a
 humanidade. Por exemplo, o telescopio Webb é unha colaboración da NASA, ESA e
-CSA. O telescopio Roman ten contribucións europeas e colaboracións coa Axencia
+CSA (Axencia Espacial Canadiense). O telescopio Roman ten contribucións europeas e colaboracións coa Axencia
 Espacial Xaponesa. Os científicos que traballan no Webb, no Roman, no Hubble
 pertencen a colaboracións internacionais de todo o mundo.
 
