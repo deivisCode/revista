@@ -448,7 +448,7 @@
             context {
                 let taboa = ()
                 for tema in _artigos.final().map(x => x.tema).dedup(){
-                    taboa = taboa + ( table.header(separador(tema)) ,)
+                    taboa = taboa + ( pdf.artifact(kind: "layout", separador(tema)) ,)
                     for artigo in _artigos.final().filter(x => x.tema == tema) {
                         taboa = taboa + (
                             link(
@@ -463,7 +463,7 @@
                                             *#artigo.titulo* // TITULO
                                         ]
                                     )
-                                    [#h(1fr)*#(artigo.localizacion.page - 2)*#linebreak()] // PÁXINA, compensando onde comezan os artigos
+                                    pdf.artifact([#h(1fr)*#(artigo.localizacion.page - 2)*#linebreak()]) // PÁXINA, compensando onde comezan os artigos
                                     artigo.autoria // AUTORIA
                                 }
                             ), // NON QUITAR ESTA COMA
@@ -480,11 +480,14 @@
     grid.cell(
         x:2,y:0,
         align: center,
-        text(
-            size   : 1.5em,
-            font   : _sans.familia,
-            weight : "black",
-            [#datos.data_dia de #datos.data_mes do #datos.data_ano#v(1em) Núm.#sys.inputs.at("numero")]
+        pdf.artifact(
+            kind: "other",
+            text(
+                size   : 1.5em,
+                font   : _sans.familia,
+                weight : "black",
+                [#datos.data_dia de #datos.data_mes do #datos.data_ano#v(1em) Núm.#sys.inputs.at("numero")]
+            )
         )
     ),
 
@@ -516,61 +519,67 @@
     // É un pouco lioso porque é un grid, con outros grids dentro, con máis grid dentro...
     grid.cell(
         x: 2, y:2,
-        {
-            set par(spacing: 0pt)
-            grid(
-                rows: 4,
-                row-gutter: 1em,
-                columns : (100%,),
-                // CORREO
+        pdf.artifact(
+            kind: "other",
+            {
+                set par(spacing: 0pt)
                 grid(
-                    columns:1, rows:2, row-gutter: 7pt,
-                    text(size: 20pt, font: _simb.familia)[#h(3pt) ],
-                    link("mailto:" + datos.correo, sans[#datos.correo])
-                ),
-                // INSTAGRAM
-                grid(
-                    columns:1, rows:2, row-gutter: 7pt,
-                    text(size: 20pt, font: _simb.familia)[#h(3pt) ],
-                    link("https://www.instagram.com/" + datos.instagram, sans[@#datos.instagram])
-                ),
-                // TWITTER
-                grid(
-                    columns:1, rows:2, row-gutter: 7pt,
-                    text(size: 20pt, font: _simb.familia)[#h(3pt) 󰕄],
-                    link("https://www.twitter.com/" + datos.twitter, sans[@#datos.twitter])
-                ),
-                // INFO GIT
-                grid(
-                    columns:1, rows:3, row-gutter: 7pt,
-                    text(size: 20pt, font: _simb.familia)[#h(3pt) ],
-                    link(
-                        "https://github.com/" + datos.repositorio,
+                    rows: 4,
+                    row-gutter: 1em,
+                    columns : (100%,),
+                    // CORREO
+                    grid(
+                        columns:1, rows:2, row-gutter: 7pt,
+                        text(size: 20pt, font: _simb.familia)[#h(3pt) ],
+                        link("mailto:" + datos.correo, sans[#datos.correo])
+                    ),
+                    // INSTAGRAM
+                    grid(
+                        columns:1, rows:2, row-gutter: 7pt,
+                        text(size: 20pt, font: _simb.familia)[#h(3pt) ],
+                        link("https://www.instagram.com/" + datos.instagram, sans[@#datos.instagram])
+                    ),
+                    // TWITTER
+                    grid(
+                        columns:1, rows:2, row-gutter: 7pt,
+                        text(size: 20pt, font: _simb.familia)[#h(3pt) 󰕄],
+                        link("https://www.twitter.com/" + datos.twitter, sans[@#datos.twitter])
+                    ),
+                    // INFO GIT
+                    grid(
+                        columns:1, rows:3, row-gutter: 7pt,
+                        text(size: 20pt, font: _simb.familia)[#h(3pt) ],
+                        link(
+                            "https://github.com/" + datos.repositorio,
+                            {
+                                set text(size: 0.9em)
+                                mono[#datos.repositorio]
+                            }
+                        ),
                         {
                             set text(size: 0.9em)
-                            mono[#datos.repositorio]
+                            simbolos[]
+                            mono(sys.inputs.at("rama", default: "sen rama"))
+                            [:]
+                            mono(sys.inputs.at("hash", default: "sen hash"))
+                            mono(sys.inputs.at("dirt", default: "sen dirt"))
                         }
-                    ),
-                    {
-                        set text(size: 0.9em)
-                        simbolos[]
-                        mono(sys.inputs.at("rama", default: "sen rama"))
-                        [:]
-                        mono(sys.inputs.at("hash", default: "sen hash"))
-                        mono(sys.inputs.at("dirt", default: "sen dirt"))
-                    }
+                    )
                 )
-            )
-        }
+            }
+        )
     ),
 
     // Logo USC
     grid.cell(
         x: 2, y:3,
-        {
-            v(1fr)
-            image("/logos/usc-negativo-escuro.pdf")
-        }
+        pdf.artifact(
+            kind: "other",
+            {
+                v(1fr)
+                image("/logos/usc-negativo-escuro.pdf")
+            }
+        )
     )
 
 )
@@ -630,6 +639,7 @@
             }
         ),
         footer : pdf.artifact(
+            kind: "footer",
             context {
                 let p = counter(page).get().first()
                 if calc.even(p) {
